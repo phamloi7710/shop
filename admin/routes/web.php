@@ -7,9 +7,9 @@ Route::get('language/{locale}',array(
     'Middleware' => 'LanguageSwitcher',
     'uses' => 'LanguageController@locale',
 ))->name('setLanguage');
-Route::get('login', 'Admin\AccountController@getLogin')->name('getLoginAdmin');
-Route::post('login', 'Admin\AccountController@postLogin')->name('postLoginAdmin');
-Route::get('logout', 'Admin\AccountController@getLogout')->name('getLogoutAdmin');
+Route::get('login.html', 'Admin\AccountController@getLogin')->name('getLoginAdmin');
+Route::post('login.html', 'Admin\AccountController@postLogin')->name('postLoginAdmin');
+Route::get('logout.html', 'Admin\AccountController@getLogout')->name('getLogoutAdmin');
 Route::group(['middleware'=>'checkRoleAdmin'], function(){
 	Route::get('', 'Admin\AdminController@getIndex')->name('getIndexAdmin');
 	Route::get('uploads', '\UniSharp\LaravelFilemanager\controllers\LfmController@show');
@@ -30,6 +30,7 @@ Route::group(['middleware'=>'checkRoleAdmin'], function(){
 		Route::get('', 'Admin\AccountController@getListUsers')->name('getListUsers');
 		Route::post('add-new', 'Admin\AccountController@postAddUser')->name('postAddUser');
 		Route::post('edit/{id}', 'Admin\AccountController@postEditUser')->name('postEditUser');
+		Route::get('delete/{id}', 'Admin\AccountController@deleteUser')->name('deleteUser');
 	});
 });
 Auth::routes();

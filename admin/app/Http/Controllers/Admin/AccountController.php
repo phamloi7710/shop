@@ -93,6 +93,11 @@ class AccountController extends Controller
         $user->group_id = $request->sltGroup;
         $user->avatar = $request->avatar;
         $user->isAdmin = 'true';
+        $user->birthday = strtotime($request->birthday);
+        $user->address = $request->txtAddress;
+        $user->cmnd = $request->txtCMND;
+        $user->gender = $request->gender;
+        $user->note = $request->note;
         $user->save();
         $notification = array(
                 'message' => __("notify.updateSuccessfully",['attribute'=>__("general.user")]), 
@@ -100,5 +105,15 @@ class AccountController extends Controller
             );
         return redirect()->back()->with($notification);
 
+    }
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        $notification = array(
+                'message' => __("notify.deleteSuccessfully",['attribute'=>__("general.user")]), 
+                'alert-type' => 'success',
+            );
+        return redirect()->back()->with($notification);
     }
 }

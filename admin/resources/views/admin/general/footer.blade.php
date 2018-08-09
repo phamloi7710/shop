@@ -31,6 +31,12 @@
         <script src="assets/admin/vendors/moment/min/moment.min.js"></script>
         <script src="assets/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="assets/admin/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+        <!-- jquery.inputmask -->
+        <script src="assets/admin/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/validationengine/languages/jquery.validationEngine-vi.js"></script>
+        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/jquery-validation/jquery.validate.js"></script>
+        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/validationengine/jquery.validationEngine.js"></script>
+        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/noty/jquery.noty.js"></script>
         <script src="assets/admin/build/js/custom.min.js"></script>
         <script src="assets/admin/vendors/validator/validator.js"></script>
         <script type="text/javascript" src="assets/admin/filemanager/js/lfm.js"></script>

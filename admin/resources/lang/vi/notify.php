@@ -4,7 +4,8 @@
 		'titleInfoMessage'=>'Xảy Ra Lỗi!',
 		'titleWarningMessage'=>'Xảy Ra Lỗi!',
 		'titleSuccessMessage'=>'Thành Công!',
-		'addNewSuccessfully'=>'Thêm Mới :attribute Thành Công',
-		'updateSuccessfully'=>'Cập Nhật :attribute Thành Công',
+		'addNewSuccessfully'=>'Thêm Mới :attribute Thành Công!',
+		'updateSuccessfully'=>'Cập Nhật :attribute Thành Công!',
+		'deleteSuccessfully'=>'Xóa :attribute Thành Công!',
 	];
 ?>

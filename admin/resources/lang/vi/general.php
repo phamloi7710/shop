@@ -49,6 +49,7 @@
 		'male'=>'Nam',
 		'female'=>'Nữ',
 		'gender'=>'Giới Tính',
-		'note'=>'Ghi Chú'
+		'note'=>'Ghi Chú',
+		'management'=>'Quản Lý',
 	];
 ?>

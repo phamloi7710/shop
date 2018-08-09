@@ -1,3 +1,133 @@
 .center{
 	text-align: center;
 }
+.has-feedback label~.form-control-feedback {
+  top: 20px;
+}
+/* FORM VALIDATION STATES */
+.has-success .help-block,
+.has-success .control-label,
+.has-success .radio,
+.has-success .checkbox,
+.has-success .radio-inline,
+.has-success .checkbox-inline,
+.has-success .form-control-feedback {
+  color: #95b75d;
+}
+.has-success .form-control {
+  border-color: #95b75d;
+}
+.has-warning .help-block,
+.has-warning .control-label,
+.has-warning .radio,
+.has-warning .checkbox,
+.has-warning .radio-inline,
+.has-warning .checkbox-inline,
+.has-warning .form-control-feedback {
+  color: #1caf9a;
+}
+.has-warning .form-control {
+  border-color: #1caf9a;
+}
+.has-error .help-block,
+.has-error .control-label,
+.has-error .radio,
+.has-error .checkbox,
+.has-error .radio-inline,
+.has-error .checkbox-inline,
+.has-error .form-control-feedback {
+  color: #E04B4A;
+}
+.has-error .form-control {
+  border-color: #E04B4A;
+}
+/* EOF FORM VALIDATION STATES */
+.form-control.error,
+.bootstrap-select.error > button {
+  border-color: #E04B4A;
+}
+label {
+  font-weight: 600;
+}
+label.error,
+label.valid {
+  color: #E04B4A;
+  margin-bottom: 0px;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: normal;
+  width: 100%;
+}
+.form-control.valid,
+.bootstrap-select.valid > button {
+  border-color: #95b75d;
+}
+label.valid {
+  color: #95b75d;
+}
+.control-label.text-left {
+  text-align: left;
+}
+/* EOF FORM ELEMENTS */
+/* LABELS AND BADGES */
+.label {
+  font-weight: 500;
+}
+.badge {
+  font-size: 11px;
+  line-height: 20px;
+  font-weight: 500;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 0px 8px;
+}
+.label-primary,
+.badge-primary {
+  background-color: #33414e;
+}
+.label-success,
+.badge-success {
+  background-color: #95b75d;
+}
+.label-info,
+.badge-info {
+  background-color: #1caf9a;
+}
+.label-warning,
+.badge-warning {
+  background-color: #1caf9a;
+}
+.label-danger,
+.badge-danger {
+  background-color: #E04B4A;
+}
+/* EOF LABELS AND BADGES */
+/* ALERTS */
+.alert {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+  line-height: 21px;
+}
+.alert-success {
+  background-color: #95b75d;
+  color: #FFF;
+  border-color: #90b456;
+}
+.alert-info {
+  background-color: #1caf9a;
+  color: #FFF;
+  border-color: #36b7e3;
+}
+.alert-warning {
+  background-color: #1caf9a;
+  color: #FFF;
+  border-color: #fe9e19;
+}
+.alert-danger {
+  background-color: #E04B4A;
+  color: #FFF;
+  border-color: #af4342;
+}
+/* EOF ALERTS */

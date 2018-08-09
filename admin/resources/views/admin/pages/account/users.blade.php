@@ -39,9 +39,8 @@
                         @endif
                     </td>
                     <td class="center">
-                        <!-- <button type="button" data-toggle="modal" data-target=".token-{{$value->id}}" class="btn btn-round btn-info btn-xs"> {{__("general.edit")}}</button> -->
                         <a href="javascript:;" data-toggle="modal" data-target=".token-{{$value->id}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>
-                        <button type="button" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></button>
+                        <a href="{{route('deleteUser',['id'=>$value->id])}}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
                     </td>
                 </tr>
                 @endforeach
@@ -52,7 +51,7 @@
 </div>
 <div class="modal fade add-new" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <form method="POST" action="{{route('postAddUser')}}" class="form-horizontal form-label-left" novalidate>
+        <form method="POST" role="form" action="{{route('postAddUser')}}" class="form-horizontal form-label-left" id="jvalidate">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -108,12 +107,11 @@
                         <div class="col-md-8">
                             <div class="panel panel-default">
                                 <div class="panel-body profile">
-                                    <div class="item form-group">
-                                        <!-- <label class="control-label col-md-4 col-sm-4 col-xs-12" for="txtName">{{trans('general.fullName')}}
-                                        </label> -->
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="txtName">{{trans('general.fullName')}}
+                                        </label>
                                         <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <span class="label label-success"> {{trans('general.fullName')}}</span>
-                                            <input id="txtName" name="txtName" value="{{old('txtName')}}" type="text" class="txtName form-control" data-validate-length-range="6" data-validate-words="2" required="required">
+                                            <input name="txtName" value="{{old('txtName')}}" type="text" class="txtName form-control" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -174,7 +172,7 @@
 @foreach($users as $value)
 <div class="modal fade token-{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
-        <form method="POST" action="{{route('postEditUser',['id'=>$value->id])}}" class="form-horizontal form-label-left">
+        <form id="jvalidate{{$value->id}}" method="POST" action="{{route('postEditUser',['id'=>$value->id])}}" class="form-horizontal form-label-left">
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -221,7 +219,7 @@
                                         <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.fullName')}}
                                         </label>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtName" value="{{$value->name}}" type="text" class="txtName{{$value->id}} form-control">
+                                            <input name="txtName" value="{{$value->name}}" type="text" class="txtName{{$value->id}} form-control" required="required">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -269,7 +267,7 @@
                                         </label>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
                                             <div class='input-group date' id='datetimepicker5'>
-                                                <input name="startDate" type='text' class="form-control" value="30/04/1994" />
+                                                <input name="birthday" type='text' class="form-control" value="{{date('Y-m-d', $value->birthday)}}" />
                                                 <span class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span>
                                                 </span>
@@ -279,7 +277,7 @@
                                     <script type="text/javascript">
                                         $(function () {
                                             $('.date').datetimepicker({
-                                                format: "DD/MM/YYYY",
+                                                format: "YYYY/MM/DD",
                                             });
                                         });
                                     </script>
@@ -302,10 +300,10 @@
                                         <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.gender')}}
                                         </label>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="radio" class="flat" name="gender" value="{{__('general.male')}}" checked="">
+                                            <input type="radio" class="flat" name="gender" value="{{__('general.male')}}" @if($value->gender==__("general.male")) checked @endif>
                                             {{__("general.male")}} 
                                             &#160;&#160;&#160;&#160;
-                                            <input type="radio" class="flat" name="gender" value="{{__('general.female')}}">
+                                            <input type="radio" class="flat" name="gender" value="{{__('general.female')}}" @if($value->gender==__("general.female")) checked @endif>
                                             {{__("general.female")}}
                                         </div>
                                     </div>
@@ -313,7 +311,8 @@
                                         <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.note')}}
                                         </label>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <textarea name="note" class="form-control" rows="10"></textarea>
+                                            <textarea name="note" class="form-control" rows="10">{{$value->note}}
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -331,7 +330,10 @@
     </div>
 </div>
 @endforeach
+<?php echo "<script type='text/javascript'>"; ?>
 @foreach($users as $value)
 @include('admin.pages.data')
 @endforeach
+<?php echo "</script>"; ?>
+
 @stop
