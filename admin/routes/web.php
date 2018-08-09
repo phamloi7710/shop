@@ -7,10 +7,10 @@ Route::get('language/{locale}',array(
     'Middleware' => 'LanguageSwitcher',
     'uses' => 'LanguageController@locale',
 ))->name('setLanguage');
-Route::get('admin/login', 'Admin\AccountController@getLogin')->name('getLoginAdmin');
-Route::post('admin/login', 'Admin\AccountController@postLogin')->name('postLoginAdmin');
-Route::get('admin/logout', 'Admin\AccountController@getLogout')->name('getLogoutAdmin');
-Route::group(['prefix'=>'admin', 'middleware'=>'checkRoleAdmin'], function(){
+Route::get('login', 'Admin\AccountController@getLogin')->name('getLoginAdmin');
+Route::post('login', 'Admin\AccountController@postLogin')->name('postLoginAdmin');
+Route::get('logout', 'Admin\AccountController@getLogout')->name('getLogoutAdmin');
+Route::group(['middleware'=>'checkRoleAdmin'], function(){
 	Route::get('', 'Admin\AdminController@getIndex')->name('getIndexAdmin');
 	Route::get('uploads', '\UniSharp\LaravelFilemanager\controllers\LfmController@show');
     Route::post('uploads/upload', '\UniSharp\LaravelFilemanager\controllers\UploadController@upload');
