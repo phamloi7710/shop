@@ -15,7 +15,33 @@ class ProductController extends Controller
     }
     public function postAddProduct(Request $request)
     {
-    	//
+    	$product = new Product();
+        $product->name = $request->txtName;
+        $product->url = changeTitle($request->txtName);
+        $product->avatar = $request->avatar;
+        // $product->imageData = $product->avatar;      <------------------------------------
+        $product->code = $request->txtCode;
+        $product->summary = $request->summary;
+        $product->content = $request->content;
+        $product->titleSeo = $request->txtTitleSeo;
+        $product->descriptionSeo = $request->txtDescriptionSeo;
+        $product->tags = $request->txtTags;
+        $product->price = $request->txtPrice;
+        $product->qty = $request->txtQty;
+        $sizeData = [
+            'length' => $request->txtLength,
+            'width' => $request->txtWidth,
+            'height' => $request->txtHeight,
+        ];
+        $product->sizeData = serialize($sizeData);
+        $product->sort = $request->txtSort;
+        $product->save();
+        $notification = array(
+                'message' => __("notify.addNewSuccessfully",['attribute'=>__("general.product")]), 
+                'alert-type' => 'success',
+            );
+        return redirect()->back()->with($notification);
+        
     }
     public function postEditProduct(Request $request, $id)
     {
