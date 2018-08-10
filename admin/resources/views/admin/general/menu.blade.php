@@ -19,8 +19,9 @@
                     <li>
                         <a><i class="fa fa-users"></i> {{__('general.products')}}<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
-                            <li><a href=""> {{__('general.categories')}}</a></li>
-                            <li><a href=""> {{__('general.products')}}</a></li>
+                            <li><a href="{{route('getListProductsAdmin')}}"> {{__('general.products')}}</a></li>
+                            <li><a href="{{route('getListCategoriesAdmin')}}"> {{__('general.categories')}}</a></li>
+                            <li><a href="{{route('getListProducersAdmin')}}"> {{__('general.producers')}}</a></li>
                         </ul>
                     </li>
                 </ul>

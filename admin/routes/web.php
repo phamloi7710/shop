@@ -28,10 +28,16 @@ Route::group(['middleware'=>'checkRoleAdmin'], function(){
 			Route::get('delete-category/{id}', 'Admin\ProductController@deleteCategory')->name('deleteCategoryAdmin');
 		});
 		Route::group(['prefix'=>'products'], function(){
-			Route::get('', 'Admin\ProductController@getList')->name('getListLanguages');
-			Route::post('add-group-user', 'Admin\ProductController@postAdd')->name('postAddLanguage');
-			Route::post('edit-group-user/{id}', 'Admin\ProductController@postEdit')->name('postEditLanguage');
-			Route::get('delete-group-user/{id}', 'Admin\ProductController@delete')->name('deleteLanguage');
+			Route::get('', 'Admin\ProductController@getListProducts')->name('getListProductsAdmin');
+			Route::post('add-group-user', 'Admin\ProductController@postAddProduct')->name('postAddProductAdmin');
+			Route::post('edit-group-user/{id}', 'Admin\ProductController@postEditProduct')->name('postEditProductAdmin');
+			Route::get('delete-group-user/{id}', 'Admin\ProductController@deleteProduct')->name('deleteProductAdmin');
+		});
+		Route::group(['prefix'=>'producers'], function(){
+			Route::get('', 'Admin\LanguageController@getListProducers')->name('getListProducersAdmin');
+			Route::post('add-Producer', 'Admin\LanguageController@postAddProducer')->name('postAddProducerAdmin');
+			Route::post('edit-Producer/{id}', 'Admin\LanguageController@postEditProducer')->name('postEditProducerAdmin');
+			Route::get('delete-Producer/{id}', 'Admin\LanguageController@deleteProducer')->name('deleteProducerAdmin');
 		});
 	});
 	Route::group(['prefix'=>'users'], function(){

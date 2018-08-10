@@ -131,3 +131,8 @@ label.valid {
   border-color: #af4342;
 }
 /* EOF ALERTS */
+@media (min-width:992px){
+  .modal-big{
+    width: 1200px;
+    }
+  }

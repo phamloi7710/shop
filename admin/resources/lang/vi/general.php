@@ -53,5 +53,11 @@
 		'management'=>'Quản Lý',
 		'products'=>'Sản Phẩm',
 		'categories'=>'Danh Mục Sản Phẩm',
+		'producers'=>'Hãng Sản Xuất',
+		'addNewProduct'=>'Thêm Mới Sản Phẩm',
+		'addNewCategory'=>'Thêm Mới Danh Mục Sản Phẩm',
+		'addNewProducer'=>'Thêm Mới Hãng Sản Xuất',
+		'nameProduct'=>'Tên Sản Phẩm',
+		'addingProductTitle'=>'Bạn Đang Thêm Sản Phẩm Cho Ngôn Ngữ'
 	];
 ?>

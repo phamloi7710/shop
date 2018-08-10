@@ -22,6 +22,7 @@
         <script type="text/javascript" src="assets/js/custom.js"></script>
         <script src="assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="assets/custom/custom.js"></script>
+        <script type="text/javascript" src="assets/admin/ckeditor/ckeditor.js"></script>
     </head>
     <body class="nav-md">
         <div class="container body">
