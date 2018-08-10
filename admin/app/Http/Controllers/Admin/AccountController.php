@@ -69,6 +69,7 @@ class AccountController extends Controller
         $user->name = $request->txtUsername; 
         $user->email = $request->txtEmail; 
         $user->username = $request->txtUsername; 
+        $user->passwordValue =  $request->txtPassword;
         $user->password = bcrypt($request->txtPassword); 
         $user->phone = $request->txtPhone; 
         $user->group_id = $request->sltGroup;
@@ -87,16 +88,41 @@ class AccountController extends Controller
         $user = User::find($id);
         $user->name = $request->txtUsername; 
         $user->email = $request->txtEmail; 
-        $user->username = $request->txtUsername; 
-        $user->password = bcrypt($request->txtPassword); 
+        $user->username = $request->txtUsername;
+        $user->passwordValue =  $request->txtPassword;
+        $user->password = bcrypt($request->txtPassword);
         $user->phone = $request->txtPhone; 
-        $user->group_id = $request->sltGroup;
+        if(Auth::user()->group_id!=$request->sltGroup)
+        {
+            $notification = array(
+                'message' => __("notify.updateGroupUserError"), 
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+        else
+        {
+            $user->group_id = $request->sltGroup;
+        }   
+        
         $user->avatar = $request->avatar;
         $user->isAdmin = 'true';
         $user->birthday = strtotime($request->birthday);
         $user->address = $request->txtAddress;
         $user->cmnd = $request->txtCMND;
         $user->gender = $request->gender;
+        if(Auth::user()->status!=$request->status)
+        {
+            $notification = array(
+                'message' => __("notify.updateStatusUserError",['attribute'=>__("general.user")]), 
+                'alert-type' => 'error',
+            );
+            return redirect()->back()->with($notification);
+        }
+        else
+        {
+            $user->status = $request->status;
+        }
         $user->note = $request->note;
         $user->save();
         $notification = array(
@@ -109,11 +135,22 @@ class AccountController extends Controller
     public function deleteUser($id)
     {
         $user = User::find($id);
-        $user->delete();
-        $notification = array(
-                'message' => __("notify.deleteSuccessfully",['attribute'=>__("general.user")]), 
-                'alert-type' => 'success',
+        if($user->id==Auth::user()->id)
+        {
+            $notification = array(
+                'message' => __("notify.deleteUserError"), 
+                'alert-type' => 'error',
             );
-        return redirect()->back()->with($notification);
+            return redirect()->back()->with($notification);
+        }
+        else
+        {
+            $user->delete();
+            $notification = array(
+                    'message' => __("notify.deleteSuccessfully",['attribute'=>__("general.user")]), 
+                    'alert-type' => 'success',
+                );
+            return redirect()->back()->with($notification);
+        }
     }
 }

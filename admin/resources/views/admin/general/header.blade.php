@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title')</title>
         <base href="{{url('')}}">
+        <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
         <link href="assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="assets/admin/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="assets/admin/vendors/nprogress/nprogress.css" rel="stylesheet">
@@ -20,12 +21,7 @@
         <script src="assets/admin/vendors/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/custom.js"></script>
         <script src="assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        
         <script src="assets/custom/custom.js"></script>
-
-        
-        
-
     </head>
     <body class="nav-md">
         <div class="container body">

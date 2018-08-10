@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);
         $getLocale = App::getLocale();
         if(Schema::hasTable('languages')) {
-            $languages = Language::all();
+            $languages = Language::where('status', true)->get();
             View::composer('admin.general.top-nav', function ($view) use ($languages,$getLocale) {
                 $view->with(['languages'=>$languages,'getLocale'=>$getLocale]);
             });

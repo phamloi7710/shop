@@ -15,14 +15,6 @@
   @if(Session::has('message'))
     var type = "{{Session::get('alert-type', 'info')}}";
     switch(type){
-        case 'info':
-            toastr.info("{{Session::get('message')}}", "{{__('notify.titleInfoMessage')}}", {timeOut: 5000}, toastr.options.closeButton = true);
-            break;
-        
-        case 'warning':
-            toastr.warning("{{Session::get('message')}}", "{{__('notify.titleWarningMessage')}}", {timeOut: 5000}, toastr.options.closeButton = true);
-            break;
-
         case 'success':
             toastr.success("{{Session::get('message')}}", "{{__('notify.titleSuccessMessage')}}", {timeOut: 5000}, toastr.options.closeButton = true);
 

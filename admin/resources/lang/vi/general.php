@@ -51,5 +51,7 @@
 		'gender'=>'Giới Tính',
 		'note'=>'Ghi Chú',
 		'management'=>'Quản Lý',
+		'products'=>'Sản Phẩm',
+		'categories'=>'Danh Mục Sản Phẩm',
 	];
 ?>

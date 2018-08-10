@@ -21,6 +21,18 @@ Route::group(['middleware'=>'checkRoleAdmin'], function(){
 			Route::post('edit-group-user/{id}', 'Admin\LanguageController@postEdit')->name('postEditLanguage');
 			Route::get('delete-group-user/{id}', 'Admin\LanguageController@delete')->name('deleteLanguage');
 		});
+		Route::group(['prefix'=>'categories'], function(){
+			Route::get('', 'Admin\ProductController@getListCategories')->name('getListCategoriesAdmin');
+			Route::post('add-category', 'Admin\ProductController@postAddCategory')->name('postAddCategoryAdmin');
+			Route::post('edit-category/{id}', 'Admin\ProductController@postEditCategory')->name('postEditCategoryAdmin');
+			Route::get('delete-category/{id}', 'Admin\ProductController@deleteCategory')->name('deleteCategoryAdmin');
+		});
+		Route::group(['prefix'=>'products'], function(){
+			Route::get('', 'Admin\ProductController@getList')->name('getListLanguages');
+			Route::post('add-group-user', 'Admin\ProductController@postAdd')->name('postAddLanguage');
+			Route::post('edit-group-user/{id}', 'Admin\ProductController@postEdit')->name('postEditLanguage');
+			Route::get('delete-group-user/{id}', 'Admin\ProductController@delete')->name('deleteLanguage');
+		});
 	});
 	Route::group(['prefix'=>'users'], function(){
 		Route::get('group-user', 'Admin\AccountController@getListUserGroup')->name('getListUserGroup');

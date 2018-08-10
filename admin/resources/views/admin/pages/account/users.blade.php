@@ -240,7 +240,7 @@
                                         <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.password')}}
                                         </label>
                                         <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtPassword" value="{{old('txtPassword')}}" type="text" class="form-control">
+                                            <input name="txtPassword" value="{{$value->passwordValue}}" type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -305,6 +305,17 @@
                                             &#160;&#160;&#160;&#160;
                                             <input type="radio" class="flat" name="gender" value="{{__('general.female')}}" @if($value->gender==__("general.female")) checked @endif>
                                             {{__("general.female")}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.status')}}
+                                        </label>
+                                        <div class="col-md-8 col-sm-6 col-xs-12">
+                                            <input type="radio" class="flat" name="status" value="active" @if($value->status=='active') checked @endif>
+                                            {{__("general.isActive")}} 
+                                            &#160;&#160;&#160;&#160;
+                                            <input style="color: red;" type="radio" class="flat" name="status" value="inActive" @if($value->status=='inActive') checked @endif>
+                                            {{__("general.locked")}}
                                         </div>
                                     </div>
                                     <div class="form-group">

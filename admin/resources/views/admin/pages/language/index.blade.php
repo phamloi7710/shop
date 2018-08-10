@@ -175,7 +175,9 @@
     </div>
 </div>
 @endforeach
+<?php echo "<script type='text/javascript'>"; ?>
 @foreach($languages as $value)
 @include('admin.pages.data')
 @endforeach
+<?php echo "</script>"; ?>
 @endsection
