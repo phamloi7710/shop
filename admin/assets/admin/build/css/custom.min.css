@@ -3132,6 +3132,7 @@ ul.project_files li a i {
 .view .mask,
 .view .content {
     position: absolute;
+    height: 100%;
     width: 100%;
     overflow: hidden;
     top: 0;
@@ -3152,7 +3153,7 @@ ul.project_files li a i {
     margin: 43px 0 0 0
 }
 .mask.no-caption .tools {
-    margin: 90px 0 0 0
+    margin: 0px 0 0 0
 }
 .view .tools a {
     display: inline-block;

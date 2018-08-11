@@ -166,56 +166,12 @@
                                                             <input name="txtSort" value="" type="text" class="form-control">
                                                         </div>
                                                     </div>
-                                                    <!-- Phần upload nhiều hình -->
-                                                    <!-- <div class="form-group">
-                                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Bổ Sung
-                                                        </label>
-                                                        <div class="col-md-9 col-sm-9 col-xs-12">
-                                                            <table id="images" class="table table-striped table-bordered table-hover">
-                                                                <thead>
-                                                                <tr>
-                                                                    <td class="text-left">Hình ảnh bổ sung</td>
-                                                                    <td class="text-right">Thứ tự</td>
-                                                                    <td></td>
-                                                                </tr>
-                                                                </thead>
-                                                                <tbody></tbody>
-                                                                <tfoot>
-                                                                <tr>
-                                                                    <td colspan="2"></td>
-                                                                    <td class="text-left">
-                                                                        <button type="button" onclick="addImage();" data-toggle="tooltip"
-                                                                                title="Thêm hình ảnh" class="btn btn-primary"><i
-                                                                                    class="fa fa-plus-circle"></i></button>
-                                                                    </td>
-                                                                </tr>
-                                                                </tfoot>
-                                                            </table>
-                                                        </div>
-                                                    </div> -->
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Chi Tiết
                                                         </label>
-                                                        <a class="btn btn-primary btn-xs"> Thêm Ảnh</a>
+                                                        <button onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</button>
                                                     </div>
-                                                    <div class="col-md-4">
-                                                        <div class="thumbnail">
-                                                            <div class="image view view-first">
-                                                                <img id="previewImageProduct" style="width: 100%; display: block;" src="assets/images/no-image.jpg" alt="image" />
-                                                                <div class="mask no-caption">
-                                                                    <div class="tools tools-bottom">
-                                                                        <a href="#" data-input="imageProduct" data-preview="previewImageProduct" class="selectImage" data-toggle="tooltip" data-placement="top" data-original-title="{{__('general.selectImage')}}"><i class="fa fa-plus"></i></a>
-                                                                        <a href="#"><i class="fa fa-trash"></i></a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div class="caption">
-                                                                <p><strong>Đường Dẫn Hình Ảnh</strong>
-                                                                </p>
-                                                                <p>Ảnh Của Sản Phâmr</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <div id="contentImage"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -223,20 +179,6 @@
                                       
                                 </div>
                             </div> 
-                            <script type="text/javascript">
-                                var image_row = 0;
-                                function addImage() {
-                                    html = '<tr id="image-row' + image_row + '">';
-                                    html += '  <td class="text-left"><a href="" id="thumb-image' + image_row + '"data-toggle="image" class="img-thumbnail"><img width="100" src="https://imageog.flaticon.com/icons/png/512/3/3901.png?size=1200x630f&pad=10,10,10,10&ext=png" alt="" title="" data-placeholder="http://phamloi7710.myzozo.net/image/cache/no_image-100x100.png" /></a><input type="hidden" name="product_image[' + image_row + '][image]" value="" id="input-image' + image_row + '"></td>';
-                                    html += '  <td class="text-right"><input type="text" name="product_image[' + image_row + '][sort_order]" value="" placeholder="Thứ tự" class="form-control" /></td>';
-                                    html += '  <td class="text-left"><button type="button" onclick="$(\'#image-row' + image_row + '\').remove();" data-toggle="tooltip" title="Xóa" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
-                                    html += '</tr>';
-
-                                    $('#images tbody').append(html);
-
-                                    image_row++;
-                                }
-                            </script>
                         </div>
                     </form>
                     
@@ -259,5 +201,27 @@ var options = {
     filebrowserUploadUrl: '/uploads/upload?type=Files&_token='
   };
   CKEDITOR.replace('ckeditor', options);
+</script>
+<script type="text/javascript">
+    var row = 0;
+    function addImage(){
+        html = '<div id="image-row'+row+'" class="col-md-3" style="margin-top: 20px;">';
+        html += '<div class="image view view-first">';
+        html += '<img id="previewImageProduct'+row+'" style="width: 100%; display: block;" src="assets/images/no-image.jpg">';
+        html += '<div class="mask no-caption">';
+        html += '<div class="tools tools-bottom">';
+        html += '<a href="#" data-input="imageProduct'+row+'" data-preview="previewImageProduct'+row+'" class="selectImage'+row+'" data-toggle="tooltip" data-placement="top" data-original-title="{{__("general.selectImage")}}"><i class="fa fa-plus"></i></a>';
+        html += '<a href="javascript:;" onclick="$(\'#image-row' + row + '\').remove();"><i class="fa fa-trash"></i></a>';
+        html += '</div></div></div></div>';
+        html += '<script>$(".selectImage'+row+'").filemanager("image");';
+        html += 'var lfm = function(options, cb) {';
+        html += 'var route_prefix = (options && options.prefix) ? options.prefix : "/uploads";';
+        html += 'window.open(route_prefix + "?type=" + options.type || "file", "FileManager", "width=1200,height=800");';
+        html += 'window.SetUrl = cb;';
+        html += '};';
+        $('#contentImage').append(html);
+
+        row++;
+    }
 </script>
 @stop
