@@ -139,7 +139,9 @@
                                             <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
                                         </div>
                                         <div id="contentImage">
-                                            
+                                            @foreach($image as $img)
+                                            {{$img['image']}}
+                                            @endforeach
                                         </div>
                                     </div>
                                 </div>
