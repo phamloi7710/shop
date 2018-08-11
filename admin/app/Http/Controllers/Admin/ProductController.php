@@ -53,9 +53,14 @@ class ProductController extends Controller
         return redirect()->back()->with($notification);
         
     }
+    public function getEditProduct(Request $request, $id)
+    {
+        $product = Product::find($id);
+        return view('admin.pages.products.editproduct');
+    }
     public function postEditProduct(Request $request, $id)
     {
-    	//
+        //
     }
     public function deleteProduct($id)
     {

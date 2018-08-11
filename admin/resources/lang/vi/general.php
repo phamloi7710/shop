@@ -58,6 +58,11 @@
 		'addNewCategory'=>'Thêm Mới Danh Mục Sản Phẩm',
 		'addNewProducer'=>'Thêm Mới Hãng Sản Xuất',
 		'nameProduct'=>'Tên Sản Phẩm',
-		'addingProductTitle'=>'Bạn Đang Thêm Sản Phẩm Cho Ngôn Ngữ'
+		'addingProductTitle'=>'Bạn Đang Thêm Sản Phẩm Cho Ngôn Ngữ',
+		'productName'=>'Tên Sản Phẩm',
+		'productCode'=>'Mã Sản Phẩm',
+		'productQty'=>'Số Lượng',
+		'productPrice'=>'Giá Sản Phẩm',
+		'productCategory'=>'Danh Mục',
 	];
 ?>

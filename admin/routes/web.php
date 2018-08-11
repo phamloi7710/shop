@@ -30,6 +30,7 @@ Route::group(['middleware'=>'checkRoleAdmin'], function(){
 		Route::group(['prefix'=>'products'], function(){
 			Route::get('', 'Admin\ProductController@getListProducts')->name('getListProductsAdmin');
 			Route::post('add-product', 'Admin\ProductController@postAddProduct')->name('postAddProductAdmin');
+			Route::get('edit-product/{id}', 'Admin\ProductController@getEditProduct')->name('getEditProductAdmin');
 			Route::post('edit-product/{id}', 'Admin\ProductController@postEditProduct')->name('postEditProductAdmin');
 			Route::get('delete-product/{id}', 'Admin\ProductController@deleteProduct')->name('deleteProductAdmin');
 		});
