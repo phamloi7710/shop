@@ -11,7 +11,8 @@ class ProductController extends Controller
 	// Products
     public function getListProducts()
     {
-    	return view('admin.pages.products.products');
+        $products = Product::all();
+    	return view('admin.pages.products.products',['products'=>$products]);
     }
     public function postAddProduct(Request $request)
     {
