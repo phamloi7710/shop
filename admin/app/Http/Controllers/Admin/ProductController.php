@@ -56,8 +56,10 @@ class ProductController extends Controller
     public function getEditProduct(Request $request, $id)
     {
         $product = Product::find($id);
-        $image = unserialize($product->imageData);
-        return view('admin.pages.products.editproduct',['product'=>$product,'image'=>$image]);
+        
+        $imageData = unserialize($product->imageData);
+
+        return view('admin.pages.products.editproduct',['imageData'=>$imageData]);
     }
     public function postEditProduct(Request $request, $id)
     {

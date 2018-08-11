@@ -138,16 +138,37 @@
                                             </label>
                                             <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
                                         </div>
-                                        <div id="contentImage">
-                                            @foreach($image as $img)
-                                            {{$img['image']}}
+                                        <div id="contentImage"> 
+                                            @php $i=0 @endphp
+                                            @foreach ($imageData as $value)
+                                            <div id="image-row{{$i}}" class="col-md-3" style="margin-top: 20px;">
+                                                <div class="image view view-first">
+                                                    <img id="previewImageProduct{{$i}}" style="width: 100%; display: block;" src="{{url('')}}/{{$value['image']}}">
+                                                    <input id="imageProduct{{$i}}" name="imageData[]" class="form-control" type="hidden" value="{{$value['image']}}">
+                                                    <div class="mask no-caption">
+                                                        <div class="tools tools-bottom"><a href="javascript:;" data-input="imageProduct{{$i}}" data-preview="previewImageProduct{{$i}}" class="selectImage{{$i}}" data-toggle="tooltip" data-placement="top" data-original-title="Chọn Hình Ảnh"><i class="fa fa-plus"></i></a><a href="javascript:;" onclick="$('#image-row{{$i}}').remove();"><i class="fa fa-trash"></i></a></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script type="text/javascript">
+                                                $(document).ready(function(){
+                                                    $('.selectImage{{$i}}').filemanager('image');
+                                                    var lfm = function(options, cb) {
+                                                        var route_prefix = (options && options.prefix) ? options.prefix : '/uploads';
+                                                        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=1200,height=800');
+                                                        window.SetUrl = cb;
+                                                    };
+                                                })
+                                                
+                                            </script>
+                                            @php $i++; @endphp
                                             @endforeach
-                                        </div>
+                                            </div>
+                                        
                                     </div>
                                 </div>
                             </div>
                         </div>
-                          
                     </div>
                 </div> 
             </div>
@@ -166,7 +187,7 @@ var options = {
   CKEDITOR.replace('ckeditor', options);
 </script>
 <script type="text/javascript">
-    var row = 0;
+    var row = {{count($imageData)}};
     function addImage(){
         html = '<div id="image-row'+row+'" class="col-md-3" style="margin-top: 20px;">';
         html += '<div class="image view view-first">';
@@ -174,7 +195,7 @@ var options = {
         html += '<input id="imageProduct'+row+'" name="imageData[]" class="form-control" type="hidden">';
         html += '<div class="mask no-caption">';
         html += '<div class="tools tools-bottom">';
-        html += '<a href="#" data-input="imageProduct'+row+'" data-preview="previewImageProduct'+row+'" class="selectImage'+row+'" data-toggle="tooltip" data-placement="top" data-original-title="{{__("general.selectImage")}}"><i class="fa fa-plus"></i></a>';
+        html += '<a href="javascript:;" data-input="imageProduct'+row+'" data-preview="previewImageProduct'+row+'" class="selectImage'+row+'" data-toggle="tooltip" data-placement="top" data-original-title="{{__("general.selectImage")}}"><i class="fa fa-plus"></i></a>';
         html += '<a href="javascript:;" onclick="$(\'#image-row' + row + '\').remove();"><i class="fa fa-trash"></i></a>';
         html += '</div></div></div></div>';
         html += '<script>$(".selectImage'+row+'").filemanager("image");';
@@ -186,6 +207,15 @@ var options = {
         $('#contentImage').append(html);
 
         row++;
-    }
+    };
+
+
+
+
+
+
+
+
+    
 </script>
 @stop
