@@ -3,6 +3,131 @@
 @stop
 @extends('admin.general.master')
 @section('content')
+<style type="text/css" media="screen">
+    .gallery .gallery-item {
+  float: left;
+  width: 25%;
+  padding: 10px 5px 10px 5px;
+  text-decoration: none;
+}
+.gallery .gallery-item .image {
+  width: 100%;
+  -moz-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 1px 0px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.gallery .gallery-item .image a {
+  display: block;
+}
+.gallery .gallery-item .image:after,
+.gallery .gallery-item .image:before {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #fff;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  z-index: 1;
+}
+.gallery .gallery-item .image:before {
+  z-index: 2;
+  background: rgba(0, 0, 0, 0);
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+.gallery .gallery-item .image:hover:before {
+  background: rgba(0, 0, 0, 0.3);
+}
+.gallery .gallery-item .image img {
+  width: 100%;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+.gallery .gallery-item .image .gallery-item-controls {
+  position: absolute;
+  right: -60px;
+  top: 3px;
+  display: block;
+  list-style: none;
+  padding: 0px;
+  z-index: 2;
+  -webkit-transition: all 200ms ease;
+  -moz-transition: all 200ms ease;
+  -ms-transition: all 200ms ease;
+  -o-transition: all 200ms ease;
+  transition: all 200ms ease;
+}
+.gallery .gallery-item .image .gallery-item-controls li {
+  float: left;
+  list-style: none;
+  background: #FFF;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 26px;
+}
+.gallery .gallery-item .image .gallery-item-controls li .check {
+  margin: 4px 0px;
+}
+.gallery .gallery-item .image .gallery-item-controls li .icheckbox_minimal-grey {
+  margin-right: 0px;
+}
+.gallery .gallery-item .image .gallery-item-controls li a,
+.gallery .gallery-item .image .gallery-item-controls li span {
+  font-size: 17px;
+  color: #BBB;
+}
+.gallery .gallery-item .image .gallery-item-controls li a:hover,
+.gallery .gallery-item .image .gallery-item-controls li span:hover {
+  color: #22262e;
+}
+.gallery .gallery-item .image .gallery-item-controls li:first-child {
+  -moz-border-radius: 0px 0px 0px 3px;
+  -webkit-border-radius: 0px 0px 0px 3px;
+  border-radius: 0px 0px 0px 3px;
+}
+.gallery .gallery-item .image .gallery-item-controls li:hover {
+  background: #F5F5F5;
+}
+.gallery .gallery-item .meta {
+  color: #22262e;
+  margin-top: 5px;
+  line-height: 16px;
+  padding: 0px 5px;
+}
+.gallery .gallery-item .meta strong {
+  display: block;
+  font-weight: 600;
+  font-size: 13px;
+}
+.gallery .gallery-item .meta span {
+  display: block;
+  color: #4d5669;
+}
+.gallery .gallery-item:hover .image .gallery-item-controls {
+  right: 3px;
+}
+.gallery .gallery-item.active .image {
+  -moz-box-shadow: 0px 0px 6px 0px rgba(51, 65, 78, 0.8);
+  -webkit-box-shadow: 0px 0px 6px 0px rgba(51, 65, 78, 0.8);
+  box-shadow: 0px 0px 6px 0px rgba(51, 65, 78, 0.8);
+}
+.gallery .gallery-item.active .image .gallery-item-controls {
+  right: 3px;
+}
+/* end Gallery */
+</style>
 <div class="right_col" role="main">
     <div class="x_panel">
         <div class="x_title">
@@ -84,21 +209,21 @@
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Tiêu Đề (Meta Title)
                                     </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input name="txtTitleSeo" value="" type="text" class="form-control" required="required">
+                                        <input name="txtTitleSeo" value="" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Mô Tả ( Meta Description)
                                     </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input name="txtDescriptionSeo" value="" type="text" class="form-control" required="required">
+                                        <input name="txtDescriptionSeo" value="" type="text" class="form-control">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="control-label col-md-2 col-sm-2 col-xs-12"> Từ Khóa ( Tags)
                                     </label>
                                     <div class="col-md-8 col-sm-8 col-xs-12">
-                                        <input name="txtTags" value="" type="text" class="form-control" required="required">
+                                        <input name="txtTags" value="" type="text" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -169,9 +294,11 @@
                                                     <div class="form-group">
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Chi Tiết
                                                         </label>
-                                                        <button onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</button>
+                                                        <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
                                                     </div>
-                                                    <div id="contentImage"></div>
+                                                    <div id="contentImage">
+                                                        
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -208,6 +335,7 @@ var options = {
         html = '<div id="image-row'+row+'" class="col-md-3" style="margin-top: 20px;">';
         html += '<div class="image view view-first">';
         html += '<img id="previewImageProduct'+row+'" style="width: 100%; display: block;" src="assets/images/no-image.jpg">';
+        html += '<input id="imageProduct'+row+'" name="imageData[]" class="form-control" type="hidden">';
         html += '<div class="mask no-caption">';
         html += '<div class="tools tools-bottom">';
         html += '<a href="#" data-input="imageProduct'+row+'" data-preview="previewImageProduct'+row+'" class="selectImage'+row+'" data-toggle="tooltip" data-placement="top" data-original-title="{{__("general.selectImage")}}"><i class="fa fa-plus"></i></a>';

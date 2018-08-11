@@ -29,9 +29,9 @@ Route::group(['middleware'=>'checkRoleAdmin'], function(){
 		});
 		Route::group(['prefix'=>'products'], function(){
 			Route::get('', 'Admin\ProductController@getListProducts')->name('getListProductsAdmin');
-			Route::post('add-group-user', 'Admin\ProductController@postAddProduct')->name('postAddProductAdmin');
-			Route::post('edit-group-user/{id}', 'Admin\ProductController@postEditProduct')->name('postEditProductAdmin');
-			Route::get('delete-group-user/{id}', 'Admin\ProductController@deleteProduct')->name('deleteProductAdmin');
+			Route::post('add-product', 'Admin\ProductController@postAddProduct')->name('postAddProductAdmin');
+			Route::post('edit-product/{id}', 'Admin\ProductController@postEditProduct')->name('postEditProductAdmin');
+			Route::get('delete-product/{id}', 'Admin\ProductController@deleteProduct')->name('deleteProductAdmin');
 		});
 		Route::group(['prefix'=>'producers'], function(){
 			Route::get('', 'Admin\LanguageController@getListProducers')->name('getListProducersAdmin');

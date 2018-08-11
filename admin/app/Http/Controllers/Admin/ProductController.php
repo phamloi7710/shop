@@ -19,7 +19,16 @@ class ProductController extends Controller
         $product->name = $request->txtName;
         $product->url = changeTitle($request->txtName);
         $product->avatar = $request->avatar;
-        // $product->imageData = $product->avatar;      <------------------------------------
+        $imageData = array();
+        $productImageData = $request->imageData;
+        if(is_array($productImageData)) {
+            for($i=0; $i < count($productImageData); $i++) {
+                $imageData[$i] = [
+                    'image' => $productImageData[$i],
+                ];
+            }
+        }
+        $product->imageData = serialize($imageData);
         $product->code = $request->txtCode;
         $product->summary = $request->summary;
         $product->content = $request->content;
