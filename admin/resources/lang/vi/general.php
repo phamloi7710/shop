@@ -52,6 +52,7 @@
 		'note'=>'Ghi Chú',
 		'management'=>'Quản Lý',
 		'products'=>'Sản Phẩm',
+		'product'=>'Sản Phẩm',
 		'categories'=>'Danh Mục Sản Phẩm',
 		'producers'=>'Hãng Sản Xuất',
 		'addNewProduct'=>'Thêm Mới Sản Phẩm',
@@ -64,5 +65,7 @@
 		'productQty'=>'Số Lượng',
 		'productPrice'=>'Giá Sản Phẩm',
 		'productCategory'=>'Danh Mục',
+		'save'=>'Lưu Lại',
+		'saveAndExit'=>'Lưu Lại Và Thoát',
 	];
 ?>

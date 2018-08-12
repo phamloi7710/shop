@@ -92,23 +92,5 @@ $(document).ready(function(){
         }                                        
     }); 
 });
-// giới hạn ký tự nhập vào
-function CountLeft(field, count, max) {
-    if (field.value.length > max)
-    field.value = field.value.substring(0, max);
-    else
-    count.value = max - field.value.length;
-}
-function alertMsg(theURL,msg)
-{
-    if (confirm(msg))
-    {
-        window.location.href=theURL;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 });
+

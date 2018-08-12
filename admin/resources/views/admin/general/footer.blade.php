@@ -40,6 +40,7 @@
         <script src="assets/admin/build/js/custom.min.js"></script>
         <script src="assets/admin/vendors/validator/validator.js"></script>
         <script type="text/javascript" src="assets/admin/filemanager/js/lfm.js"></script>
+        <script src="assets/custom/format-price.vn.js" type="text/javascript" charset="utf-8" async defer></script>
         
         
         

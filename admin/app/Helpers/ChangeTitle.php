@@ -11,5 +11,15 @@
         $str = preg_replace('/[^a-z0-9-\s]/', '', $str);
         $str = preg_replace('/([\s]+)/', '-', $str);
         return $str;
+    };
+    function formatPriceVN($price){
+        $price = trim(mb_strtolower($price));
+        $price = preg_replace('/(Đ)/', '', $price);
+        $price = preg_replace('/(V|v)/', '', $price);
+        $price = preg_replace('/(N|n)/', '', $price);
+        $price = preg_replace('/( )/', '', $price);
+        $price = preg_replace('/((|))/', '', $price);
+        $price = preg_replace('/[^a-z0-9-\s]/', '', $price);
+        return $price;
     }
 ?>

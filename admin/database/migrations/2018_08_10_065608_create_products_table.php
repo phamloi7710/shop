@@ -22,11 +22,14 @@ class CreateProductsTable extends Migration
             $table->integer('category_id')->nullable();
             $table->string('code')->unique()->nullable();
             $table->string('langCode')->nullable();
-            $table->integer('price')->nullable();
-            $table->integer('salePrice')->nullable();
+            $table->integer('priceWareHouse')->nullable();
+            $table->integer('priceBuy')->nullable();
+            $table->integer('priceSale')->nullable();
             $table->integer('qty')->nullable();
             $table->text('summary')->nullable();
+            $table->string('sizeType')->nullable();
             $table->text('sizeData')->nullable();
+            $table->string('weightData')->nullable();
             $table->longText('content')->nullable();
             $table->longText('note')->nullable();
             $table->integer('sort')->nullable();
@@ -34,6 +37,7 @@ class CreateProductsTable extends Migration
             $table->string('titleSeo', 255)->nullable();
             $table->string('descriptionSeo', 255)->nullable();
             $table->string('tags', 255)->nullable();
+            $table->integer('attribute_id')->nullable();
             
             $table->timestamps();
         });
