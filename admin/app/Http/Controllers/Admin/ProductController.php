@@ -15,6 +15,10 @@ class ProductController extends Controller
         $products = Product::all();
     	return view('admin.pages.products.products',['products'=>$products]);
     }
+    public function getAddProduct()
+    {
+        return view('admin.pages.products.addProduct');
+    }
     public function postAddProduct(Request $request)
     {
     	$product = new Product();
@@ -66,7 +70,7 @@ class ProductController extends Controller
             'message' => __("notify.addNewSuccessfully",['attribute'=>__("general.product")]), 
             'alert-type' => 'success',
         );
-        return redirect()->back()->with($notification);
+        return redirect()->route('getListProductsAdmin')->with($notification);
         
         
     }
