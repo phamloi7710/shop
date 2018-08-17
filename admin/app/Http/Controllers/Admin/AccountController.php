@@ -9,40 +9,20 @@ use App\Model\UserGroup;
 use Auth;
 use Session;
 use App;
+
+use Spatie\Permission\Models\Role;
+use DB;
+use Hash;
 class AccountController extends Controller
 {
-    public function getLogin()
+    function __construct()
     {
-        if (Auth::check()) {
-            return redirect()->route('getIndexAdmin');
-        }else{
-            return view('admin.pages.account.login');
-        }
+         // $this->middleware('permission:user-view');
+         // $this->middleware('permission:user-add', ['only' => ['postAddUser']]);
+         // $this->middleware('permission:user-update', ['only' => ['destroy']]);
+         // $this->middleware('permission:user-delete', ['only' => ['deleteUser']]);
     }
-    public function postLogin(Request $request)
-   	{
-
-   		$data = [
-            'username' => $request->txtUsername,
-            'password' => $request->txtPassword,
-            'isAdmin' => 'true',
-        ];
-    	if(Auth::attempt($data)){
-            $notification = array(
-                'message' => 'Login Successfully', 
-                'alert-type' => 'success',
-            );
-    		return redirect()->route('getIndexAdmin')->with($notification);
-    	}
-    	else{
-    		return redirect()->back()->with('success','Đăng Nhập Thất Bại!');;
-    	}
-    }
-    public function getLogout() {
-       Auth::logout();
-       Session::flush();
-       return redirect()->route('getLoginAdmin');
-    }
+    
     public function getListUserGroup()
     {
         $group = UserGroup::where('langCode', App::getLocale('locale'))->get();
@@ -61,7 +41,9 @@ class AccountController extends Controller
     {
         $users = User::all();
         $group = UserGroup::all();
-        return view('admin.pages.account.users',['users'=>$users, 'group'=>$group]);
+        // $roles = Role::pluck('name','name')->all();
+        $roles = Role::all();
+        return view('admin.pages.account.users',['users'=>$users, 'group'=>$group, 'roles'=>$roles]);
     }
     public function postAddUser(Request $request)
     {
@@ -76,12 +58,22 @@ class AccountController extends Controller
         $user->avatar = $request->avatar;
         $user->isAdmin = 'true';
         $user->save();
+        $user->assignRole($request->input('roles'));
         $notification = array(
                 'message' => __("notify.addNewSuccessfully",['attribute'=>__("general.user")]), 
                 'alert-type' => 'success',
             );
         return redirect()->back()->with($notification);
 
+    }
+    public function getEditUser(Request $request, $id)
+    {
+        $user = User::find($id);
+        $group = UserGroup::all();
+        // $roles = Role::pluck('name','name')->all();
+        $roles = Role::all();
+        $userRole = $user->roles;
+        return view('admin.pages.account.editUser', ['user'=>$user,'group'=>$group,'roles'=>$roles,'userRole'=>$userRole]);
     }
     public function postEditUser(Request $request, $id)
     {
@@ -125,6 +117,10 @@ class AccountController extends Controller
         }
         $user->note = $request->note;
         $user->save();
+        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+
+        $user->assignRole($request->input('roles'));
         $notification = array(
                 'message' => __("notify.updateSuccessfully",['attribute'=>__("general.user")]), 
                 'alert-type' => 'success',

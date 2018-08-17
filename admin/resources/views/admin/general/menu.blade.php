@@ -24,6 +24,9 @@
                             <li><a href="{{route('getListProducersAdmin')}}"> {{__('general.producers')}}</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <a href="{{route('getListPermisssions')}}"><i class="fa fa-users"></i> {{__('general.roles')}}</a>
+                    </li>
                 </ul>
             </div>
         </div>

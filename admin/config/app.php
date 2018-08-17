@@ -39,6 +39,9 @@ return [
         App\Providers\RouteServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        // permission by pham loi
+        Spatie\Permission\PermissionServiceProvider::class,
+        'Collective\Html\HtmlServiceProvider',
 
     ],
     'aliases' => [
@@ -76,6 +79,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Form' => 'Collective\Html\FormFacade',
+        'Html' => 'Collective\Html\HtmlFacade',
 
     ],
 

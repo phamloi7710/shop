@@ -23,6 +23,10 @@
         <script src="assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="assets/custom/custom.js"></script>
         <script type="text/javascript" src="assets/admin/ckeditor/ckeditor.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+        <!-- Switchery -->
+        <link href="assets/admin/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
     </head>
     <body class="nav-md">
         <div class="container body">

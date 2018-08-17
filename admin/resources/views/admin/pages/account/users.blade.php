@@ -11,7 +11,7 @@
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target=".add-new"> {{__("general.addNew")}}</button>
             <div class="clearfix"></div>
         </div>
-        <div class="x_content">
+        <div class="x_content table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -39,7 +39,7 @@
                         @endif
                     </td>
                     <td class="center">
-                        <a href="javascript:;" data-toggle="modal" data-target=".token-{{$value->id}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>
+                        <a href="{{route('getEditUser',$value->id)}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>
                         <a href="{{route('deleteUser',['id'=>$value->id])}}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
                     </td>
                 </tr>
@@ -61,23 +61,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <!-- <div class="col-md-4">
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <a data-input="avatar" data-preview="previewImage" class=" btn btn-info btn-xs selectImage" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.selectImage')}}"> {{__('general.selectAvatar')}}</a>
-                                        <a class="deleteImage" href="javascript:;" title=""><span data-toggle="tooltip" data-placement="left" data-original-title="{{__('general.deleteImage')}}" style="font-size: 30px; color: red;" class="fa fa-trash-o pull-right"></span></a>
-                                        <div class="thumbnail">
-                                            <img class="imagePreview" style="width: 100%; height: 100%;" id="previewImage" src="assets/images/no-image.jpg" alt="">
-                                        </div>
-                                        <input id="avatar" name="avatar" class="form-control" type="hidden">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="col-md-4">
                             <div class="panel panel-default">
-                                <div class="panel-body profile" style="background: url('assets/images/gallery/music-4.jpg') center center no-repeat;">
+                                <div class="panel-body profile">
                                     <div class="profile-image">
                                         <img class="imagePreview" style="width: 100%; height: 100%;" id="previewImage" src="assets/images/no-image.jpg" alt="">
                                     </div>
@@ -104,60 +90,96 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8">
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-4 col-xs-12" for="txtName">{{trans('general.fullName')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-8 col-xs-12">
-                                            <input name="txtName" value="{{old('txtName')}}" type="text" class="txtName form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.emailAddress')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtEmail" value="{{old('txtEmail')}}" type="email" class="txtEmail form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.username')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtUsername" value="{{old('txtUsername')}}" type="text" class="txtUsername form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.password')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtPassword" value="{{old('txtPassword')}}" type="text" class="form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.phoneNumber')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtPhone" value="{{old('txtPhone')}}" type="text" class="txtPhone form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.userGroup')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="sltGroup" data-live-search="true" class="sltGroup select2_single form-control select" tabindex="-1">
-                                                <option value="">----{{__("general.selectUserGroup")}}----</option>
-                                                @foreach($group as $value=>$gr)
-                                                <option value="{{$gr->id}}">{{$gr->name}}</option>
-                                                @endforeach
-                                            </select>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body profile">
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="txtName">{{trans('general.fullName')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <input name="txtName" value="{{old('txtName')}}" type="text" class="txtName form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.emailAddress')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input name="txtEmail" value="{{old('txtEmail')}}" type="email" class="txtEmail form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.username')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input name="txtUsername" value="{{old('txtUsername')}}" type="text" class="txtUsername form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.password')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input name="txtPassword" value="{{old('txtPassword')}}" type="text" class="form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.phoneNumber')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <input name="txtPhone" value="{{old('txtPhone')}}" type="text" class="txtPhone form-control" required="required">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.userGroup')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <select name="sltGroup" data-live-search="true" class="sltGroup select2_single form-control select" tabindex="-1">
+                                                        <option value="">----{{__("general.selectUserGroup")}}----</option>
+                                                        @foreach($group as $value=>$gr)
+                                                        <option value="{{$gr->id}}">{{$gr->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                                                </div>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
+                                                </label>
+                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                    <div class="panel panel-default">
+                                                        <table class="table table-bordered">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>
+                                                                        @php $i=0 @endphp
+                                                                        @foreach($roles as $value)
+                                                                        <div class="checkbox">
+                                                                            <label>
+                                                                              <input name="roles[{{$i}}]" type="checkbox" class="flat" value="{{$value->name}}"> {{$value->name}}
+                                                                            </label>
+                                                                        </div>
+                                                                        @php $i++ @endphp
+                                                                        @endforeach
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -316,6 +338,13 @@
                                             &#160;&#160;&#160;&#160;
                                             <input style="color: red;" type="radio" class="flat" name="status" value="inActive" @if($value->status=='inActive') checked @endif>
                                             {{__("general.locked")}}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
+                                        </label>
+                                        <div class="col-md-8 col-sm-6 col-xs-12">
+                                            <!--  -->
                                         </div>
                                     </div>
                                     <div class="form-group">

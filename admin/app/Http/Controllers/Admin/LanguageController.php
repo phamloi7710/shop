@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use App\Model\Language;
 class LanguageController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:language-get-list', ['only' => ['getList']]);
+    }
     public function getList()
     {
     	$languages = Language::all();
