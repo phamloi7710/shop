@@ -9,6 +9,10 @@ use App\Model\Products\Product;
 use App;
 class ProductController extends Controller
 {
+    function __construct()
+    {
+         $this->middleware('permission:user-add', ['only' => ['postAddUser']]);
+    }
 	// Products
     public function getListProducts()
     {
@@ -42,9 +46,24 @@ class ProductController extends Controller
         $product->titleSeo = $request->txtTitleSeo;
         $product->descriptionSeo = $request->txtDescriptionSeo;
         $product->tags = $request->txtTags;
-        $product->priceWareHouse = formatPriceVN($request->txtPriceWareHouse);
-        $product->priceSell = formatPriceVN($request->txtPriceSell);
-        $product->priceSale = formatPriceVN($request->txtPriceSale);
+        if($request->txtPriceWareHouse){
+            $product->priceWareHouse = formatPriceVN($request->txtPriceWareHouse);
+        }else{
+            $product->priceWareHouse = formatPriceVN(0);
+        }
+        if($request->txtPriceWareHouse){
+            $product->priceSell = formatPriceVN($request->txtPriceSell);
+        }else{
+            $product->priceSell = formatPriceVN(0);
+        }
+        if($request->txtPriceWareHouse){
+            $product->priceSale = formatPriceVN($request->txtPriceSale);
+        }else{
+            $product->priceSale = formatPriceVN(0);
+        }
+        
+        
+        
         $product->qty = $request->txtQty;
         $sizeData = [
             'length' => $request->txtLength,
@@ -59,13 +78,17 @@ class ProductController extends Controller
         ];
         $product->weightData = serialize($weightData);
         $product->sort = $request->txtSort;
+        // $attributeData = [
+        //         'AttributeName' => $request->txtAttributeName,
+        //         'AttributePriceWareHouse' => $request->txtAttributePriceWareHouse,
+        //         'AttributePriceSell' => $request->txtAttributePriceSell,
+        //         'AttributePriceSale' => $request->txtAttributePriceSale,
+        //         'AttributeQty' => $request->txtAttributeQty,
+        //     ];
+        // $product->attributeData = serialize($attributeData);
+        // 
         $product->save();
-        if($request->attribute)
-        {
-            $productAttribute = new Product();
-            $productAttribute->attribute_id = $product->id;
-            $productAttribute->save();
-        }
+
         $notification = array(
             'message' => __("notify.addNewSuccessfully",['attribute'=>__("general.product")]), 
             'alert-type' => 'success',
@@ -80,7 +103,18 @@ class ProductController extends Controller
         $imageData = unserialize($product->imageData);
         $sizeData = unserialize($product->sizeData);
         $weightData = unserialize($product->weightData);
-        return view('admin.pages.products.editproduct',['product'=>$product, 'imageData'=>$imageData, 'sizeData'=>$sizeData,'weightData'=>$weightData]);
+        // $attributeData = unserialize($product->attributeData);
+        $attributeData= Product::find($id)->value('attributeData');
+        $attributeData = unserialize($attributeData);
+        $attributeDataItem = array();
+        foreach($attributeData as $value){
+            $attributeDataItem = $value;
+            break;
+        }
+        echo "<pre>";
+        print_r($attributeDataItem);
+        exit();
+        return view('admin.pages.products.editproduct',['product'=>$product, 'imageData'=>$imageData, 'sizeData'=>$sizeData,'weightData'=>$weightData, 'attributeData'=>$attributeData]);
     }
     public function postEditProduct(Request $request, $id)
     {
@@ -106,9 +140,21 @@ class ProductController extends Controller
         $product->titleSeo = $request->txtTitleSeo;
         $product->descriptionSeo = $request->txtDescriptionSeo;
         $product->tags = $request->txtTags;
-        $product->priceWareHouse = formatPriceVN($request->txtPriceWareHouse);
-        $product->priceSell = formatPriceVN($request->txtPriceSell);
-        $product->priceSale = formatPriceVN($request->txtPriceSale);
+        if($request->txtPriceWareHouse){
+            $product->priceWareHouse = formatPriceVN($request->txtPriceWareHouse);
+        }else{
+            $product->priceWareHouse = formatPriceVN(0);
+        }
+        if($request->txtPriceWareHouse){
+            $product->priceSell = formatPriceVN($request->txtPriceSell);
+        }else{
+            $product->priceSell = formatPriceVN(0);
+        }
+        if($request->txtPriceWareHouse){
+            $product->priceSale = formatPriceVN($request->txtPriceSale);
+        }else{
+            $product->priceSale = formatPriceVN(0);
+        }
         $product->qty = $request->txtQty;
         $sizeData = [
             'length' => $request->txtLength,

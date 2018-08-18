@@ -17,7 +17,7 @@
 	            <ul class="nav nav-tabs">
 	                <li class="active"><a href="#tab-general" data-toggle="tab">Tổng quan</a></li>
 	                <li><a href="#tab-data" data-toggle="tab">Dữ liệu</a></li>
-	                <li><a href="#tab-attributes" data-toggle="tab"> Thêm Thuộc Tính</a></li>
+	                <li><a href="#tab-attributes" data-toggle="tab"> Thuộc Tính Sản Phẩm</a></li>
 	            </ul>
 	            <div class="tab-content" style="margin-top: 30px;">
 	                <div class="tab-pane active" id="tab-general">
@@ -198,6 +198,7 @@
 	                                <th style="width: 15%">Giá Nhập Kho</th>
 	                                <th style="width: 15%">Giá Bán</th>
 	                                <th style="width: 15%">Giá Khuyến Mãi</th>
+	                                <th style="width: 15%">Số Lượng</th>
 	                                <th style="width: 5%"></th>
 	                            </tr>
 	                        </thead>
@@ -205,58 +206,9 @@
 	                        </tbody>
 	                    </table>
 	                </div>
-	                <script type="text/javascript">
-	                    var row = 0;
-	                    function addAttribute(){
-	                        html = '<tr id="AttributeRow'+row+'">';
-	                        html += '<td><input type="text" name="attribute[]" class="form-control" placeholder="Tên Thuộc Tính"></td>';
-	                        html += '<td><input type="text" name="attribute[]" class="form-control" placeholder="Giá Nhập Kho"></td>';
-	                        html += '<td><input type="text" name="attribute[]" class="form-control" placeholder="Giá Bán"></td>';
-	                        html += '<td><input type="text" name="attribute[]" class="form-control" placeholder="Giá Khuyến Mãi"></td>';
-	                        html += '<td class="center">';
-	                        html += '<a href="javascript:void(0)" onclick="$(\'#AttributeRow'+row+'\').remove();" title="Xóa" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>';
-	                        html += '</td></tr>';
-	                        $('#contentAttribute').append(html);
-
-	                        row++;
-	                    }
-	                </script>
 	            </div>
 	        </div>
 	    </div>
 	</form>
 </div>
-<script>
-  // ckeditor
-var options = {
-    filebrowserImageBrowseUrl: '/uploads?type=Images',
-    filebrowserImageUploadUrl: '/uploads/upload?type=Images&_token=',
-    filebrowserBrowseUrl: '/uploads?type=Files',
-    filebrowserUploadUrl: '/uploads/upload?type=Files&_token='
-  };
-  CKEDITOR.replace('ckeditor', options);
-</script>
-<script type="text/javascript">
-    var row = 0;
-    function addImage(){
-        html = '<div id="image-row'+row+'" class="col-md-3" style="margin-top: 20px;">';
-        html += '<div class="image view view-first">';
-        html += '<img id="previewImageProduct'+row+'" style="width: 100%; display: block;" src="assets/images/no-image.jpg">';
-        html += '<input id="imageProduct'+row+'" name="imageData[]" class="form-control" type="hidden">';
-        html += '<div class="mask no-caption">';
-        html += '<div class="tools tools-bottom">';
-        html += '<a href="#" data-input="imageProduct'+row+'" data-preview="previewImageProduct'+row+'" class="selectImage'+row+'" data-toggle="tooltip" data-placement="top" data-original-title="{{__("general.selectImage")}}"><i class="fa fa-plus"></i></a>';
-        html += '<a href="javascript:;" onclick="$(\'#image-row' + row + '\').remove();"><i class="fa fa-trash"></i></a>';
-        html += '</div></div></div></div>';
-        html += '<script>$(".selectImage'+row+'").filemanager("image");';
-        html += 'var lfm = function(options, cb) {';
-        html += 'var route_prefix = (options && options.prefix) ? options.prefix : "/uploads";';
-        html += 'window.open(route_prefix + "?type=" + options.type || "file", "FileManager", "width=1200,height=800");';
-        html += 'window.SetUrl = cb;';
-        html += '};';
-        $('#contentImage').append(html);
-
-        row++;
-    }
-</script>
 @stop

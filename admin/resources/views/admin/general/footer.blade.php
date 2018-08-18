@@ -41,6 +41,7 @@
         <script src="assets/admin/vendors/validator/validator.js"></script>
         <script type="text/javascript" src="assets/admin/filemanager/js/lfm.js"></script>
         <script src="assets/custom/format-price.vn.js" type="text/javascript" charset="utf-8" async defer></script>
+        <script src="assets/custom/custom.footer.js" type="text/javascript"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 

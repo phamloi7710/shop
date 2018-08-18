@@ -21,7 +21,7 @@
         <script src="assets/admin/vendors/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="assets/js/custom.js"></script>
         <script src="assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <script src="assets/custom/custom.js"></script>
+        <script src="assets/custom/custom.header.js"></script>
         <script type="text/javascript" src="assets/admin/ckeditor/ckeditor.js"></script>
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">

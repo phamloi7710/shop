@@ -1,6 +1,9 @@
 .center{
 	text-align: center;
 }
+.hide{
+  display: none;
+}
 .has-feedback label~.form-control-feedback {
   top: 20px;
 }

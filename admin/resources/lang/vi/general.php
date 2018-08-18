@@ -67,5 +67,9 @@
 		'productCategory'=>'Danh Mục',
 		'save'=>'Lưu Lại',
 		'saveAndExit'=>'Lưu Lại Và Thoát',
+		'birthday'=>'Ngày Sinh',
+		'phone'=>'Điện Thoại',
+		'viewProfile'=>'Xem Hồ Sơ',
+		'attributeName'=>'Tên Thuộc Tính',
 	];
 ?>

@@ -17,7 +17,6 @@
                         <th> {{__("general.productName")}}</th>
                         <th> {{__("general.productCode")}}</th>
                         <th> {{__("general.productQty")}}</th>
-                        <th> {{__("general.productPrice")}}</th>
                         <th> {{__("general.productCategory")}}</th>
                         <th> {{__("general.avatar")}}</th>
                         <th> {{__("general.action")}}</th>
@@ -29,12 +28,6 @@
                         <td>{{$value->name}}</td>
                         <td>{{$value->code}}</td>
                         <td>{{$value->qty}}</td>
-                        <!-- <td>{{number_format($value->price,0,'',' ')}}</td> -->
-                        <td style="width: 14%">
-                            <i>Giá Nhập Kho:  </i><br>
-                            <i>Giá Bán:  </i><br>
-                            <i>Giá Khuyến Mãi:  </i><br>
-                        </td>
                         <td>{{$value->category_id}}</td>
                         <td><img width="45" src="{{url('')}}/{{$value->avatar}}" alt=""></td>
                         <td class="center">

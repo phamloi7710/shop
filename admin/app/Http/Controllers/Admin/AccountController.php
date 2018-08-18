@@ -125,7 +125,7 @@ class AccountController extends Controller
                 'message' => __("notify.updateSuccessfully",['attribute'=>__("general.user")]), 
                 'alert-type' => 'success',
             );
-        return redirect()->back()->with($notification);
+        return redirect()->route('getListUsers')->with($notification);
 
     }
     public function deleteUser($id)

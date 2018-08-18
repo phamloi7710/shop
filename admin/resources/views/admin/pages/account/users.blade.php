@@ -12,7 +12,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content table-responsive">
-            <table class="table table-striped">
+            <!-- <table class="table table-striped">
               <thead>
                 <tr>
                     <th style="width: 20%;"> {{trans('general.name')}}</th>
@@ -45,7 +45,47 @@
                 </tr>
                 @endforeach
               </tbody>
-            </table>
+            </table> -->
+            <div class="x_content">
+                @foreach($users as $value)
+                <div class="col-md-4 col-sm-4 col-xs-12 profile_details">
+                    <div class="well profile_view">
+                        <div class="col-xs-12">
+                            <div class="panel panel-default">
+                                <b class="label label-success pull-left"> {{$value->group->name}}</b>
+                                @if($value->status=='active')
+                                <b class="label label-success pull-right"> {{__("general.isActive")}}</b>
+                                @else
+                                <b class="label label-danger pull-right"> {{__("general.locked")}}</b>
+                                @endif
+                                <div class="panel-body">
+                                    <div class="profile-image">
+                                        <img src="{{url('')}}/{{$value->avatar}}" alt="" class="img-circle img-responsive">
+                                    </div>
+                                </div>
+                                <div class="panel-body list-group border-bottom">
+                                    <p class="list-group-item"><strong>{{__('general.username')}}: </strong> {{$value->name}}</p>
+                                    <p class="list-group-item"><strong>{{__('general.email')}}: </strong>{{$value->email}}</p>
+                                    <p class="list-group-item"><strong>{{__('general.address')}}: </strong>{{$value->address}}</p>
+                                    <p class="list-group-item"><strong>{{__('general.phone')}}: </strong>{{$value->phone}}</p>
+                                    <p class="list-group-item"><strong>{{__('general.birthday')}}: </strong>{{date('d/m/Y',$value->birthday)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 bottom text-center">
+                            <div class="col-xs-12 col-sm-6 emphasis pull-right">
+                                <a href="{{route('deleteUser',$value->id)}}" class="btn btn-danger btn-xs pull-right">
+                                    <i class="fa fa-trash"></i>{{__('general.delete')}}
+                                </a>
+                                <a href="{{route('getEditUser',$value->id)}}" class="btn btn-primary btn-xs pull-right">
+                                    <i class="fa fa-eye"></i>{{__('general.viewProfile')}}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
         </div>
     </div>
 </div>
@@ -67,7 +107,7 @@
                                     <div class="profile-image">
                                         <img class="imagePreview" style="width: 100%; height: 100%;" id="previewImage" src="assets/images/no-image.jpg" alt="">
                                     </div>
-                                    <input id="avatar" name="avatar" class="form-control" type="hidden">
+                                    <input id="avatar" name="image" class="form-control" type="hidden">
                                     <div class="profile-data">
                                         <div class="profile-data-name center" style="color:#00A887; margin-top: 20px; font-size: 16px;"><b class="txtNameShow"></b></div>
                                     </div>
@@ -96,44 +136,44 @@
                                     <div class="panel panel-default">
                                         <div class="panel-body profile">
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-4 col-xs-12" for="txtName">{{trans('general.fullName')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="txtName">{{trans('general.fullName')}}
                                                 </label>
                                                 <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <input name="txtName" value="{{old('txtName')}}" type="text" class="txtName form-control" required="required">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.emailAddress')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.emailAddress')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <input name="txtEmail" value="{{old('txtEmail')}}" type="email" class="txtEmail form-control" required="required">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.username')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.username')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <input name="txtUsername" value="{{old('txtUsername')}}" type="text" class="txtUsername form-control" required="required">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.password')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.password')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <input name="txtPassword" value="{{old('txtPassword')}}" type="text" class="form-control" required="required">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.phoneNumber')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.phoneNumber')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <input name="txtPhone" value="{{old('txtPhone')}}" type="text" class="txtPhone form-control" required="required">
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.userGroup')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.userGroup')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <select name="sltGroup" data-live-search="true" class="sltGroup select2_single form-control select" tabindex="-1">
                                                         <option value="">----{{__("general.selectUserGroup")}}----</option>
                                                         @foreach($group as $value=>$gr)
@@ -142,17 +182,10 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                            <!-- <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
-                                                </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
-                                                    {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
-                                                </div>
-                                            </div> -->
                                             <div class="form-group">
-                                                <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
+                                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{trans('general.roles')}}
                                                 </label>
-                                                <div class="col-md-8 col-sm-6 col-xs-12">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
                                                     <div class="panel panel-default">
                                                         <table class="table table-bordered">
                                                             <tbody>
@@ -191,189 +224,5 @@
         </form>
     </div>
 </div>
-@foreach($users as $value)
-<div class="modal fade token-{{$value->id}}" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <form id="jvalidate{{$value->id}}" method="POST" action="{{route('postEditUser',['id'=>$value->id])}}" class="form-horizontal form-label-left">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel"> {{__("general.viewUpdateEmploye")}}</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="panel panel-default">
-                                <div class="panel-body profile" style="background: url('assets/images/gallery/music-4.jpg') center center no-repeat;">
-                                    <div class="profile-image">
-                                        <img class="imagePreview{{$value->id}}" style="width: 100%; height: 100%;" id="previewImageEdit{{$value->id}}" src="{{url('')}}/{{$value->avatar}}" alt="">
-                                    </div>
-                                    <input value="{{$value->avatar}}" id="avatar{{$value->id}}" name="avatar" class="form-control" type="hidden">
-                                    <div class="profile-data">
-                                        <div class="profile-data-name center" style="color:#00A887; margin-top: 20px; font-size: 16px;"><b class="txtNameShow">{{$value->name}}</b></div>
-                                    </div>
-                                </div>
-                                <div class="panel-body center">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <a data-input="avatar{{$value->id}}" data-preview="previewImageEdit{{$value->id}}" class=" btn btn-info btn-xs selectImage" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.selectImage')}}">{{__('general.selectAvatar')}}</a>
-                                        </div>
-                                        <div class="col-md-6">
-                                            
-                                            <a class="deleteImage{{$value->id}} btn btn-danger btn-xs" href="javascript:;" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.deleteImage')}}">{{__('general.deleteImage')}}</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="panel-body list-group border-bottom">
-                                    <a href="javascript:;" class="list-group-item" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.emailAddress')}}"><span class="fa fa-envelope"></span> <b class="txtEmailShow{{$value->id}}"> {{$value->email}}</b></a>
-                                    <a href="javascript:;" class="list-group-item" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.username')}}"><span class="fa fa-user"></span> <b class="txtUsernameShow{{$value->id}}"> {{$value->username}}</b></a>
-                                    <a href="javascript:;" class="list-group-item" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.phoneNumber')}}"><span class="fa fa-phone"></span> <b class="txtPhoneShow{{$value->id}}"> {{$value->phone}}</b></a>
-                                    <a href="javascript:;" class="list-group-item" data-toggle="tooltip" data-placement="right" data-original-title="{{__('general.userGroup')}}"><span class="fa fa-users"></span> <b class="txtGroupShow{{$value->id}}"> {{$value->group->name}}</b></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="panel panel-default">
-                                <div class="panel-body profile">
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.fullName')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtName" value="{{$value->name}}" type="text" class="txtName{{$value->id}} form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.emailAddress')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtEmail" value="{{$value->email}}" type="email" class="txtEmail{{$value->id}} form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.username')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtUsername" value="{{$value->username}}" type="text" class="txtUsername{{$value->id}} form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.password')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtPassword" value="{{$value->passwordValue}}" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.phoneNumber')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtPhone" value="{{$value->phone}}" type="text" class="txtPhone{{$value->id}} form-control" required="required">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.userGroup')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <select name="sltGroup" class="sltGroup{{$value->id}} select2_single form-control" tabindex="-1">
-                                                <option value="">----{{__("general.selectUserGroup")}}----</option>
-                                                @foreach($group as $gr)
-                                                <option value="{{$gr->id}}" @if($value->group_id==$gr->id) selected @endif>{{$gr->name}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.birthDay')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <div class='input-group date' id='datetimepicker5'>
-                                                <input name="birthday" type='text' class="form-control" value="{{date('Y-m-d', $value->birthday)}}" />
-                                                <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <script type="text/javascript">
-                                        $(function () {
-                                            $('.date').datetimepicker({
-                                                format: "YYYY/MM/DD",
-                                            });
-                                        });
-                                    </script>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.address')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtAddress" value="{{$value->address}}" type="text" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.cmnd')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input name="txtCMND" value="{{$value->cmnd}}" type="number" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.gender')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="radio" class="flat" name="gender" value="{{__('general.male')}}" @if($value->gender==__("general.male")) checked @endif>
-                                            {{__("general.male")}} 
-                                            &#160;&#160;&#160;&#160;
-                                            <input type="radio" class="flat" name="gender" value="{{__('general.female')}}" @if($value->gender==__("general.female")) checked @endif>
-                                            {{__("general.female")}}
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.status')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <input type="radio" class="flat" name="status" value="active" @if($value->status=='active') checked @endif>
-                                            {{__("general.isActive")}} 
-                                            &#160;&#160;&#160;&#160;
-                                            <input style="color: red;" type="radio" class="flat" name="status" value="inActive" @if($value->status=='inActive') checked @endif>
-                                            {{__("general.locked")}}
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.roles')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <!--  -->
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-4 col-sm-3 col-xs-12">{{trans('general.note')}}
-                                        </label>
-                                        <div class="col-md-8 col-sm-6 col-xs-12">
-                                            <textarea name="note" class="form-control" rows="10">{{$value->note}}
-                                            </textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal"> {{__("general.close")}}</button>
-                    <button type="reset" class="btn btn-default"> {{__("general.reset")}}</button>
-                    <button type="submit" class="btn btn-success">{{trans('general.saveChanges')}}</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
-@endforeach
-<?php echo "<script type='text/javascript'>"; ?>
-@foreach($users as $value)
-@include('admin.pages.data')
-@endforeach
-<?php echo "</script>"; ?>
 
 @stop

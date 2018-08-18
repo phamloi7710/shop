@@ -17,6 +17,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab-general" data-toggle="tab">Tổng quan</a></li>
                     <li><a href="#tab-data" data-toggle="tab">Dữ liệu</a></li>
+                    <li><a href="#tab-attributes" data-toggle="tab"> Thuộc Tính Sản Phẩm</a></li>
                 </ul>
                 <div class="tab-content" style="margin-top: 30px;">
                     <div class="tab-pane active" id="tab-general">
@@ -207,6 +208,35 @@
                             </div>
                         </div>
                     </div> 
+                    <div class="tab-pane active" id="tab-attributes">
+                        <a onclick="addAttribute();" class="btn btn-success pull-right">Thêm Mới Thuộc Tính</a>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th> Tên Thuộc Tính</th>
+                                    <th style="width: 15%">Giá Nhập Kho</th>
+                                    <th style="width: 15%">Giá Bán</th>
+                                    <th style="width: 15%">Giá Khuyến Mãi</th>
+                                    <th style="width: 15%">Số Lượng</th>
+                                    <th style="width: 5%"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="contentAttribute">
+                                @foreach($attributeDataItem as $att)
+                                <tr id="AttributeRow">
+                                    <td><input value="{{$att['AttributeName']}}" type="text" name="txtAttributeName[]" class="form-control" placeholder="Tên Thuộc Tính"></td>
+                                    <td><input value="{{$att['AttributePriceWareHouse']}}" type="text" name="txtAttributePriceWareHouse[]" class="form-control" placeholder="Giá Nhập Kho"></td>
+                                    <td><input value="{{$att['AttributePriceSell']}}" type="text" name="txtAttributePriceSell[]" class="form-control" placeholder="Giá Bán"></td>
+                                    <td><input value="{{$att['AttributePriceSale']}}" type="text" name="txtAttributePriceSale[]" class="form-control" placeholder="Giá Khuyến Mãi"></td>
+                                    <td><input value="{{$att['AttributeQty']}}" type="text" name="txtAttributeQty[]" class="form-control" placeholder="Số Lượng"></td>
+                                    <td class="center">
+                                        <a href="javascript:void(0)" onclick="$(\'#AttributeRow'+row+'\').remove();" title="Xóa" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -244,14 +274,5 @@ var options = {
 
         row++;
     };
-
-
-
-
-
-
-
-
-    
 </script>
 @stop
