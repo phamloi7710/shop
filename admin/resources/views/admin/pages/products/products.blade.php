@@ -11,7 +11,7 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <table class="table table-hover">
+            <table class="table table-hover table-bordered jambo_table" style="font-size: 14px;">
                 <thead>
                     <tr>
                         <th> {{__("general.productName")}}</th>
@@ -28,7 +28,7 @@
                         <td>{{$value->name}}</td>
                         <td>{{$value->code}}</td>
                         <td>{{$value->qty}}</td>
-                        <td>{{$value->category_id}}</td>
+                        <td>{{$value->category->name}}</td>
                         <td><img width="45" src="{{url('')}}/{{$value->avatar}}" alt=""></td>
                         <td class="center">
                             <a href="{{route('getEditProductAdmin', ['id'=>$value->id])}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>

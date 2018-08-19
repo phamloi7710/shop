@@ -17,17 +17,20 @@ class ProductController extends Controller
     public function getListProducts()
     {
         $products = Product::all();
+        
     	return view('admin.pages.products.products',['products'=>$products]);
     }
     public function getAddProduct()
     {
-        return view('admin.pages.products.addProduct');
+        $categories = Category::all();
+        return view('admin.pages.products.addProduct',['categories'=>$categories]);
     }
     public function postAddProduct(Request $request)
     {
     	$product = new Product();
         $product->name = $request->txtName;
         $product->url = changeTitle($request->txtName);
+        $product->category_id = $request->sltparentCategory;
         $product->avatar = $request->avatar;
         $product->langCode = App::getLocale();
         $imageData = array();
@@ -113,16 +116,15 @@ class ProductController extends Controller
         $sizeData = unserialize($product->sizeData);
         $weightData = unserialize($product->weightData);
         $attributeData = unserialize($product->attributeData);
-        // echo "<pre>";
-        // print_r($attributeData);
-        // exit();
-        return view('admin.pages.products.editproduct',['product'=>$product, 'imageData'=>$imageData, 'sizeData'=>$sizeData,'weightData'=>$weightData, 'attributeData'=>$attributeData]);
+        $categories = Category::all();
+        return view('admin.pages.products.editproduct',['product'=>$product, 'imageData'=>$imageData, 'sizeData'=>$sizeData,'weightData'=>$weightData, 'attributeData'=>$attributeData, 'categories'=>$categories]);
     }
     public function postEditProduct(Request $request, $id)
     {
         $product = Product::find($id);
         $product->name = $request->txtName;
         $product->url = changeTitle($request->txtName);
+        $product->category_id = $request->sltparentCategory;
         $product->avatar = $request->avatar;
         $product->langCode = App::getLocale();
         $data = array();
@@ -205,7 +207,7 @@ class ProductController extends Controller
     // Categories
     public function getListCategories()
     {
-        $category = Category::all()->sortBy('sort');
+        $category = Category::all()->toArray();
     	return view('admin.pages.products.categories',['category'=>$category]);
     }
     public function postAddCategory(Request $request)
@@ -224,9 +226,26 @@ class ProductController extends Controller
         );
         return redirect()->back()->with($notification);
     }
+    public function getEditCategory($id)
+    {
+        $category = Category::find($id);
+        return view('admin.pages.products.editCategory',['category'=>$category]);
+    }
     public function postEditCategory(Request $request, $id)
     {
-    	//
+        $category = Category::find($id);
+        $category->name = $request->txtName;
+        $category->slug = changeTitle($request->txtName);
+        $category->parent_id = $request->sltparentCategory;
+        $category->sort = $request->txtSort;
+        $category->status = $request->status;
+        $category->note = $request->note;
+        $category->save();
+        $notification = array(
+            'message' => __("notify.updateSuccessfully",['attribute'=>__("general.category")]), 
+            'alert-type' => 'success',
+        );
+        return redirect()->route('getListCategoriesAdmin')->with($notification);
     }
     public function deleteCategory($id)
     {

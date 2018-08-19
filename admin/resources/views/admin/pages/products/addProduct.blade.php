@@ -15,69 +15,52 @@
 	        <div class="x_content">
 	            <ul class="nav nav-tabs">
 	                <li class="active"><a href="#tab-general" data-toggle="tab">{{__('general.overview')}}</a></li>
-	                <li><a href="#tab-data" data-toggle="tab">Dữ liệu</a></li>
-	                <li><a href="#tab-attributes" data-toggle="tab"> Thuộc Tính Sản Phẩm</a></li>
+	                <li><a href="#tab-data" data-toggle="tab">{{__('general.data')}}</a></li>
+	                <li><a href="#tab-image" data-toggle="tab">{{__('general.image')}}</a></li>
+	                <li><a href="#tab-attributes" data-toggle="tab">{{__('general.productAttributes')}}</a></li>
+	                <li><a href="#tab-seo" data-toggle="tab">{{__('general.seo')}}</a></li>
 	            </ul>
 	            <div class="tab-content" style="margin-top: 30px;">
 	                <div class="tab-pane active" id="tab-general">
 	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Tên Sản Phẩm
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{__('general.productName')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtName" value="" type="text" class="form-control" autofocus>
+	                            <input placeholder="{{__('placeholder.productName')}}" name="txtName" type="text" class="form-control" autofocus>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Mã Sản Phẩm
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{__('general.productCode')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtCode" value="" type="text" class="form-control">
+	                            <input name="txtCode" placeholder="{{__('placeholder.productCode')}}" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Danh Mục
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> {{__('general.productCategory')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <select name="" class="form-control select">
-	                            	<option value=""></option>
-	                            </select>
+	                            <select name="sltparentCategory" class="form-control select" data-live-search="true">
+                               		<option>---{{__('general.root')}}---</option>
+	                            		<?php menuMultiInCate($categories,0,$str = "&ensp;",old('sltparentCategory')) ?>
+	                           	</select>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô Tả Ngắn
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{__('general.summary')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
 	                            <textarea name="summary" class="form-control" rows="5"></textarea>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Nội Dung Sản Phẩm
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> {{__('general.productDetail')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
 	                            <textarea name="content" id="ckeditor"></textarea>
 	                        </div>
 	                    </div>
-	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Tiêu Đề (Meta Title)
-	                        </label>
-	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtTitleSeo" value="" type="text" class="form-control">
-	                        </div>
-	                    </div>
-	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Mô Tả ( Meta Description)
-	                        </label>
-	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtDescriptionSeo" value="" type="text" class="form-control">
-	                        </div>
-	                    </div>
-	                    <div class="form-group">
-	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Từ Khóa ( Tags)
-	                        </label>
-	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtTags" value="" type="text" class="form-control">
-	                        </div>
-	                    </div>
+	                    
 	                </div>
 	                <div class="tab-pane" id="tab-data">
 	                    <div class="tab-content">
@@ -109,36 +92,37 @@
 	                            <div class="col-md-8">
 	                                <div class="panel panel-default">
 	                                    <div class="panel-body profile">
-	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá Nhập Kho
+	                                    	<div class="form-group">
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.qtyWarehouse')}}
 	                                            </label>
 	                                            <div class="col-md-9 col-sm-9 col-xs-12">
-	                                                <input id="priceWareHouseVn" type="text" name="txtPriceWareHouse" class="form-control">
+	                                                <input name="txtQty" placeholder="{{__('placeholder.qtyWarehouse')}}" type="text" class="form-control">
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá Bán
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.costOfCapital')}}
 	                                            </label>
 	                                            <div class="col-md-9 col-sm-9 col-xs-12">
-	                                                <input id="priceVn" type="text" name="txtPriceSell" class="form-control">
+	                                                <input id="priceWareHouseVn" placeholder="{{__('placeholder.costOfCapital')}}" type="text" name="txtPriceWareHouse" class="form-control">
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Giá Khuyến Mãi(Nếu Có)
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.priceSell')}}
 	                                            </label>
 	                                            <div class="col-md-9 col-sm-9 col-xs-12">
-	                                                <input id="priceSaleVn" type="text" name="txtPriceSale" class="form-control">
+	                                                <input id="priceVn" placeholder="{{__('placeholder.priceSell')}}" type="text" name="txtPriceSell" class="form-control">
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Số Lượng Nhập Kho
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.priceSale')}}
 	                                            </label>
 	                                            <div class="col-md-9 col-sm-9 col-xs-12">
-	                                                <input name="txtQty" value="" type="text" class="form-control">
+	                                                <input id="priceSaleVn" placeholder="{{__('placeholder.priceSale')}}" type="text" name="txtPriceSale" class="form-control">
 	                                            </div>
 	                                        </div>
+	                                        
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-6"> Đơn Vị Kích Thước
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-6"> {{__('general.sizeUnit')}}
 	                                            </label>
 	                                            <div class="col-md-5 col-sm-5 col-xs-6">
 	                                                <select name="sltSizeType" class="form-control">
@@ -150,23 +134,23 @@
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Kích Thước
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> {{__('general.size')}}
 	                                            </label>
 	                                            <div class="col-md-3 col-sm-3 col-xs-4">
-	                                                <input name="txtLength" value="" type="text" class="form-control" placeholder="Dài">
+	                                                <input name="txtLength" placeholder="{{__('placeholder.size')}}" type="text" class="form-control" placeholder="{{__('placeholder.length')}}">
 	                                            </div>
 	                                            <div class="col-md-3 col-sm-3 col-xs-4">
-	                                                <input name="txtWidth" value="" type="text" class="form-control" placeholder="Rộng">
+	                                                <input name="txtWidth" type="text" class="form-control" placeholder="{{__('placeholder.width')}}">
 	                                            </div>
 	                                            <div class="col-md-3 col-sm-3 col-xs-4">
-	                                                <input name="txtHeight" value="" type="text" class="form-control" placeholder="Cao">
+	                                                <input name="txtHeight" type="text" class="form-control" placeholder="{{__('placeholder.height')}}">
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-3"> Trọng Lượng
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">{{__('general.weight')}}
 	                                            </label>
 	                                            <div class="col-md-5 col-sm-5 col-xs-5">
-	                                                <input name="txtWeight" value="" type="text" class="form-control" placeholder="Trọng Lượng">
+	                                                <input name="txtWeight" value="" type="text" class="form-control" placeholder="{{__('placeholder.weight')}}">
 	                                            </div>
 	                                            <div class="col-md-4 col-sm-4 col-xs-4">
 	                                                <select name="sltWeightType" class="form-control">
@@ -176,20 +160,13 @@
 	                                            </div>
 	                                        </div>
 	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-3"> Thứ Tự Hiển Thị
+	                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">{{__('general.displayOrder')}}
 	                                            </label>
 	                                            <div class="col-md-5 col-sm-5 col-xs-5">
-	                                                <input name="txtSort" value="" type="text" class="form-control">
+	                                                <input name="txtSort" placeholder="{{__('placeholder.displayOrder')}}" type="text" class="form-control">
 	                                            </div>
 	                                        </div>
-	                                        <div class="form-group">
-	                                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Chi Tiết
-	                                            </label>
-	                                            <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
-	                                        </div>
-	                                        <div id="contentImage">
-	                                            
-	                                        </div>
+	                                        
 	                                    </div>
 	                                </div>
 	                            </div>
@@ -197,22 +174,53 @@
 	                          
 	                    </div>
 	                </div>
+	                <div class="tab-pane" id="tab-image">
+	                	<div class="form-group">
+                            <a onclick="addImage();" class="btn btn-primary pull-right">{{__('general.addImage')}}</a>
+                        </div>
+                        <div id="contentImage">
+                            
+                        </div>
+	                </div>
 	                <div class="tab-pane" id="tab-attributes">
-	                    <a onclick="addAttribute();" class="btn btn-success pull-right">Thêm Mới Thuộc Tính</a>
+	                    <a onclick="addAttribute();" class="btn btn-success pull-right">{{__('general.addNewAttribute')}}</a>
 	                    <table class="table table-bordered">
 	                        <thead>
 	                            <tr>
-	                                <th> Tên Thuộc Tính</th>
-	                                <th style="width: 15%">Giá Nhập Kho</th>
-	                                <th style="width: 15%">Giá Bán</th>
-	                                <th style="width: 15%">Giá Khuyến Mãi</th>
-	                                <th style="width: 15%">Số Lượng</th>
+	                                <th>{{__('general.attributeName')}}</th>
+	                                <th style="width: 20%">{{__('general.costOfCapital')}}</th>
+	                                <th style="width: 20%">{{__('general.priceSale')}}</th>
+	                                <th style="width: 20%">{{__('general.priceSale')}}</th>
+	                                <th style="width: 20%">{{__('general.qtyWarehouse')}}</th>
 	                                <th style="width: 5%"></th>
 	                            </tr>
 	                        </thead>
 	                        <tbody id="contentAttribute">
 	                        </tbody>
 	                    </table>
+	                </div>
+	                <div class="tab-pane" id="tab-seo">
+	                	<div class="form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoTitle')}}
+	                        </label>
+	                        <div class="col-md-8 col-sm-8 col-xs-12">
+	                            <input name="txtTitleSeo" placeholder="{{__('placeholder.seoTitle')}}" type="text" class="form-control">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoDescription')}}
+	                        </label>
+	                        <div class="col-md-8 col-sm-8 col-xs-12">
+	                            <input name="txtDescriptionSeo" placeholder="{{__('placeholder.seoDescription')}}" type="text" class="form-control">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoTags')}}
+	                        </label>
+	                        <div class="col-md-8 col-sm-8 col-xs-12">
+	                            <input name="txtTags" placeholder="{{__('placeholder.seoTags')}}" type="text" class="form-control">
+	                        </div>
+	                    </div>
 	                </div>
 	            </div>
 	        </div>

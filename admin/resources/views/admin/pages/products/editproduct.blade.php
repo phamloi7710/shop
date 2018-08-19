@@ -36,6 +36,16 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Danh Mục
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <select name="sltparentCategory" class="form-control select" data-live-search="true">
+                                    <option value="0">---{{__('general.root')}}---</option>
+                                        <?php menuMultiInCate($categories,0,$str = "&ensp;",old('sltparentCategory')) ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="control-label col-md-2 col-sm-2 col-xs-12">Mô Tả Ngắn
                             </label>
                             <div class="col-md-8 col-sm-8 col-xs-12">
@@ -74,7 +84,7 @@
                     <div class="tab-pane" id="tab-data">
                         <div class="tab-content">
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-body profile">
                                             <div class="profile-image">
@@ -94,7 +104,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8 col-sm-8 col-xs-12">
                                     <div class="panel panel-default">
                                         <div class="panel-body profile">
                                             <div class="form-group">
@@ -178,9 +188,9 @@
                                             <div id="contentImage"> 
                                                 @php $i=0 @endphp
                                                 @foreach ($imageData as $value)
-                                                <div id="image-row{{$i}}" class="col-md-3" style="margin-top: 20px;">
+                                                <div id="image-row{{$i}}" class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 20px;">
                                                     <div class="image view view-first">
-                                                        <img id="previewImageProduct{{$i}}" style="width: 100%; display: block;" src="{{url('')}}/{{$value['image']}}">
+                                                        <img width="300" height="300" id="previewImageProduct{{$i}}" src="{{url('')}}/{{$value['image']}}">
                                                         <input id="imageProduct{{$i}}" name="imageData[]" class="form-control" type="hidden" value="{{$value['image']}}">
                                                         <div class="mask no-caption">
                                                             <div class="tools tools-bottom"><a href="javascript:;" data-input="imageProduct{{$i}}" data-preview="previewImageProduct{{$i}}" class="selectImage{{$i}}" data-toggle="tooltip" data-placement="top" data-original-title="Chọn Hình Ảnh"><i class="fa fa-plus"></i></a><a href="javascript:;" onclick="$('#image-row{{$i}}').remove();"><i class="fa fa-trash"></i></a></div>
