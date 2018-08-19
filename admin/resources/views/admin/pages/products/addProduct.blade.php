@@ -13,9 +13,8 @@
 	            <div class="clearfix"></div>
 	        </div>
 	        <div class="x_content">
-	        	
 	            <ul class="nav nav-tabs">
-	                <li class="active"><a href="#tab-general" data-toggle="tab">Tổng quan</a></li>
+	                <li class="active"><a href="#tab-general" data-toggle="tab">{{__('general.overview')}}</a></li>
 	                <li><a href="#tab-data" data-toggle="tab">Dữ liệu</a></li>
 	                <li><a href="#tab-attributes" data-toggle="tab"> Thuộc Tính Sản Phẩm</a></li>
 	            </ul>
@@ -33,6 +32,15 @@
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
 	                            <input name="txtCode" value="" type="text" class="form-control">
+	                        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> Danh Mục
+	                        </label>
+	                        <div class="col-md-8 col-sm-8 col-xs-12">
+	                            <select name="" class="form-control select">
+	                            	<option value=""></option>
+	                            </select>
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
@@ -189,7 +197,7 @@
 	                          
 	                    </div>
 	                </div>
-	                <div class="tab-pane active" id="tab-attributes">
+	                <div class="tab-pane" id="tab-attributes">
 	                    <a onclick="addAttribute();" class="btn btn-success pull-right">Thêm Mới Thuộc Tính</a>
 	                    <table class="table table-bordered">
 	                        <thead>

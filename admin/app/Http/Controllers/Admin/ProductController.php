@@ -78,15 +78,24 @@ class ProductController extends Controller
         ];
         $product->weightData = serialize($weightData);
         $product->sort = $request->txtSort;
-        // $attributeData = [
-        //         'AttributeName' => $request->txtAttributeName,
-        //         'AttributePriceWareHouse' => $request->txtAttributePriceWareHouse,
-        //         'AttributePriceSell' => $request->txtAttributePriceSell,
-        //         'AttributePriceSale' => $request->txtAttributePriceSale,
-        //         'AttributeQty' => $request->txtAttributeQty,
-        //     ];
-        // $product->attributeData = serialize($attributeData);
-        // 
+        $attributeName = $request->txtAttributeName;
+        $attributePriceWareHouse = $request->txtAttributePriceWareHouse;
+        $attributePriceSell = $request->txtAttributePriceSell;
+        $attributePriceSale = $request->txtAttributePriceSale;
+        $attributeQty = $request->txtAttributeQty;
+        $attributeData = array();
+        if(is_array($attributeName)) {
+            for($i=0; $i < count($attributeName); $i++) {
+                $attributeData[$i] = [
+                    'AttributeName' => $attributeName[$i],
+                    'AttributePriceWareHouse' => $attributePriceWareHouse[$i],
+                    'AttributePriceSell' => $attributePriceSell[$i],
+                    'AttributePriceSale' => $attributePriceSale[$i],
+                    'AttributeQty' => $attributeQty[$i],
+                ];
+            }
+        }
+        $product->attributeData = serialize($attributeData);
         $product->save();
 
         $notification = array(
@@ -103,17 +112,10 @@ class ProductController extends Controller
         $imageData = unserialize($product->imageData);
         $sizeData = unserialize($product->sizeData);
         $weightData = unserialize($product->weightData);
-        // $attributeData = unserialize($product->attributeData);
-        $attributeData= Product::find($id)->value('attributeData');
-        $attributeData = unserialize($attributeData);
-        $attributeDataItem = array();
-        foreach($attributeData as $value){
-            $attributeDataItem = $value;
-            break;
-        }
-        echo "<pre>";
-        print_r($attributeDataItem);
-        exit();
+        $attributeData = unserialize($product->attributeData);
+        // echo "<pre>";
+        // print_r($attributeData);
+        // exit();
         return view('admin.pages.products.editproduct',['product'=>$product, 'imageData'=>$imageData, 'sizeData'=>$sizeData,'weightData'=>$weightData, 'attributeData'=>$attributeData]);
     }
     public function postEditProduct(Request $request, $id)
@@ -169,6 +171,24 @@ class ProductController extends Controller
         ];
         $product->weightData = serialize($weightData);
         $product->sort = $request->txtSort;
+        $attributeName = $request->txtAttributeName;
+        $attributePriceWareHouse = $request->txtAttributePriceWareHouse;
+        $attributePriceSell = $request->txtAttributePriceSell;
+        $attributePriceSale = $request->txtAttributePriceSale;
+        $attributeQty = $request->txtAttributeQty;
+        $attributeData = array();
+        if(is_array($attributeName)) {
+            for($i=0; $i < count($attributeName); $i++) {
+                $attributeData[$i] = [
+                    'AttributeName' => $attributeName[$i],
+                    'AttributePriceWareHouse' => $attributePriceWareHouse[$i],
+                    'AttributePriceSell' => $attributePriceSell[$i],
+                    'AttributePriceSale' => $attributePriceSale[$i],
+                    'AttributeQty' => $attributeQty[$i],
+                ];
+            }
+        }
+        $product->attributeData = serialize($attributeData);
         $product->save();
         $notification = array(
             'message' => __("notify.updateSuccessfully",['attribute'=>__("general.product")]), 
@@ -185,11 +205,24 @@ class ProductController extends Controller
     // Categories
     public function getListCategories()
     {
-    	return view('admin.pages.products.categories');
+        $category = Category::all()->sortBy('sort');
+    	return view('admin.pages.products.categories',['category'=>$category]);
     }
     public function postAddCategory(Request $request)
     {
-    	//
+    	$category = new Category;
+        $category->name = $request->txtName;
+        $category->slug = changeTitle($request->txtName);
+        $category->parent_id = $request->sltparentCategory;
+        $category->sort = $request->txtSort;
+        $category->status = $request->status;
+        $category->note = $request->note;
+        $category->save();
+        $notification = array(
+            'message' => __("notify.addNewSuccessfully",['attribute'=>__("general.category")]), 
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     }
     public function postEditCategory(Request $request, $id)
     {

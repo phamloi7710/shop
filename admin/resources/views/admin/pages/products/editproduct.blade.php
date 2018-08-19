@@ -208,7 +208,7 @@
                             </div>
                         </div>
                     </div> 
-                    <div class="tab-pane active" id="tab-attributes">
+                    <div class="tab-pane" id="tab-attributes">
                         <a onclick="addAttribute();" class="btn btn-success pull-right">Thêm Mới Thuộc Tính</a>
                         <table class="table table-bordered">
                             <thead>
@@ -222,17 +222,19 @@
                                 </tr>
                             </thead>
                             <tbody id="contentAttribute">
-                                @foreach($attributeDataItem as $att)
-                                <tr id="AttributeRow">
+                                @php $i=0 @endphp
+                                @foreach($attributeData as $att)
+                                <tr id="AttributeRow{{$i}}">
                                     <td><input value="{{$att['AttributeName']}}" type="text" name="txtAttributeName[]" class="form-control" placeholder="Tên Thuộc Tính"></td>
                                     <td><input value="{{$att['AttributePriceWareHouse']}}" type="text" name="txtAttributePriceWareHouse[]" class="form-control" placeholder="Giá Nhập Kho"></td>
                                     <td><input value="{{$att['AttributePriceSell']}}" type="text" name="txtAttributePriceSell[]" class="form-control" placeholder="Giá Bán"></td>
                                     <td><input value="{{$att['AttributePriceSale']}}" type="text" name="txtAttributePriceSale[]" class="form-control" placeholder="Giá Khuyến Mãi"></td>
                                     <td><input value="{{$att['AttributeQty']}}" type="text" name="txtAttributeQty[]" class="form-control" placeholder="Số Lượng"></td>
                                     <td class="center">
-                                        <a href="javascript:void(0)" onclick="$(\'#AttributeRow'+row+'\').remove();" title="Xóa" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
+                                        <a href="javascript:void(0)" onclick="$('#AttributeRow{{$i}}').remove();" title="Xóa" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
+                                @php $i++ @endphp
                                 @endforeach
                             </tbody>
                         </table>

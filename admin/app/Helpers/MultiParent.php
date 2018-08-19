@@ -47,6 +47,7 @@
 		{
 			$id = $val["id"];
 			$name = $val["name"];
+			$sort = $val["sort"];
 			$status = $val["status"];
 			if($val["parent_id"] == $parent_id)
 			{
@@ -63,10 +64,11 @@
 				            	
 				            }
 				            echo '<td>'.$status.'</td>';
+				            echo '<td>'.$sort.'</td>';
 				            echo'<td class="center">
                                 <div class="btn-group btn-group-xs">
                                     <button class="btn btn-danger btn-rounded" onclick="return alertMsg();"><span class="glyphicon glyphicon-trash"></span></button>
-                                    <a href="#" class="btn btn-info btn-rounded" data-toggle="modal" data-target=".token-{{$value->id}}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href="#" class="btn btn-info btn-rounded" data-toggle="modal" data-target=".token-'.$id.'"><span class="glyphicon glyphicon-pencil"></span></a>
                                 </div> 
                             </td>
 				        </tr>
