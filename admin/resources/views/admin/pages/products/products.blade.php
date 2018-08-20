@@ -28,11 +28,17 @@
                         <td>{{$value->name}}</td>
                         <td>{{$value->code}}</td>
                         <td>{{$value->qty}}</td>
-                        <td>{{$value->category->name}}</td>
+                        <td>
+                            @if($value->category_id==0)
+                            
+                            @else
+                            {{$value->category->name}}
+                            @endif
+                        </td>
                         <td><img width="45" src="{{url('')}}/{{$value->avatar}}" alt=""></td>
                         <td class="center">
                             <a href="{{route('getEditProductAdmin', ['id'=>$value->id])}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>
-                            <a href="{{route('deleteUser',['id'=>$value->id])}}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
+                            <a href="{{route('deleteProductAdmin',['id'=>$value->id])}}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
                         </td>
                     </tr>
                     @endforeach

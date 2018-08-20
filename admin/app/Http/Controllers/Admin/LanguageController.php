@@ -10,6 +10,9 @@ class LanguageController extends Controller
     function __construct()
     {
          $this->middleware('permission:language-get-list', ['only' => ['getList']]);
+         $this->middleware('permission:language-post-add', ['only' => ['postAdd']]);
+         $this->middleware('permission:language-post-edit', ['only' => ['postEdit']]);
+         $this->middleware('permission:language-delete', ['only' => ['delete']]);
     }
     public function getList()
     {
@@ -34,5 +37,15 @@ class LanguageController extends Controller
     	$language->status = $request->status;
     	$language->save();
     	return redirect()->back()->with('success', '__("notify.updateSuccessfully")');
+    }
+    public function delete($id)
+    {
+        $language = Language::find($id);
+        $language->delete();
+        $notification = array(
+            'message' => __("notify.deleteSuccessfully",['attribute'=>__("general.language")]), 
+            'alert-type' => 'success',
+        );
+        return redirect()->back()->with($notification);
     }
 }

@@ -1,6 +1,6 @@
 @include('admin.general.header')
 @include('admin.general.menu')
 @include('admin.general.top-nav')
-@yield('content')
+@yield('content')            
 @include('admin.general.notify')             
 @include('admin.general.footer')             

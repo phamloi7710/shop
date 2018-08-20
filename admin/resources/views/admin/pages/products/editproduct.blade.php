@@ -15,9 +15,11 @@
             </div>
             <div class="x_content">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tab-general" data-toggle="tab">Tổng quan</a></li>
-                    <li><a href="#tab-data" data-toggle="tab">Dữ liệu</a></li>
-                    <li><a href="#tab-attributes" data-toggle="tab"> Thuộc Tính Sản Phẩm</a></li>
+                    <li class="active"><a href="#tab-general" data-toggle="tab">{{__('general.overview')}}</a></li>
+                    <li><a href="#tab-data" data-toggle="tab">{{__('general.data')}}</a></li>
+                    <li><a href="#tab-image" data-toggle="tab">{{__('general.image')}}</a></li>
+                    <li><a href="#tab-attributes" data-toggle="tab">{{__('general.productAttributes')}}</a></li>
+                    <li><a href="#tab-seo" data-toggle="tab">{{__('general.seo')}}</a></li>
                 </ul>
                 <div class="tab-content" style="margin-top: 30px;">
                     <div class="tab-pane active" id="tab-general">
@@ -59,27 +61,7 @@
                                 <textarea name="content" id="ckeditor">{!!$product->content!!}</textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Tiêu Đề (Meta Title)
-                            </label>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input name="txtTitleSeo" value="{{$product->titleSeo}}" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Mô Tả ( Meta Description)
-                            </label>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input name="txtDescriptionSeo" value="{{$product->descriptionSeo}}" type="text" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Từ Khóa ( Tags)
-                            </label>
-                            <div class="col-md-8 col-sm-8 col-xs-12">
-                                <input name="txtTags" value="{{$product->tags}}" type="text" class="form-control">
-                            </div>
-                        </div>
+                        
                     </div>
                     <div class="tab-pane" id="tab-data">
                         <div class="tab-content">
@@ -180,44 +162,45 @@
                                                     <input name="txtSort" value="{{$product->sort}}" type="text" class="form-control">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Chi Tiết
-                                                </label>
-                                                <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
-                                            </div>
-                                            <div id="contentImage"> 
-                                                @php $i=0 @endphp
-                                                @foreach ($imageData as $value)
-                                                <div id="image-row{{$i}}" class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 20px;">
-                                                    <div class="image view view-first">
-                                                        <img width="300" height="300" id="previewImageProduct{{$i}}" src="{{url('')}}/{{$value['image']}}">
-                                                        <input id="imageProduct{{$i}}" name="imageData[]" class="form-control" type="hidden" value="{{$value['image']}}">
-                                                        <div class="mask no-caption">
-                                                            <div class="tools tools-bottom"><a href="javascript:;" data-input="imageProduct{{$i}}" data-preview="previewImageProduct{{$i}}" class="selectImage{{$i}}" data-toggle="tooltip" data-placement="top" data-original-title="Chọn Hình Ảnh"><i class="fa fa-plus"></i></a><a href="javascript:;" onclick="$('#image-row{{$i}}').remove();"><i class="fa fa-trash"></i></a></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <script type="text/javascript">
-                                                    $(document).ready(function(){
-                                                        $('.selectImage{{$i}}').filemanager('image');
-                                                        var lfm = function(options, cb) {
-                                                            var route_prefix = (options && options.prefix) ? options.prefix : '/uploads';
-                                                            window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=1200,height=800');
-                                                            window.SetUrl = cb;
-                                                        };
-                                                    })
-                                                    
-                                                </script>
-                                                @php $i++; @endphp
-                                                @endforeach
-                                                </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div> 
+                    <div class="tab-pane" id="tab-image">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12"> Hình Ảnh Chi Tiết
+                            </label>
+                            <a onclick="addImage();" class="btn btn-primary btn-xs"> Thêm Ảnh</a>
+                        </div>
+                        <div id="contentImage"> 
+                            @php $i=0 @endphp
+                            @foreach ($imageData as $value)
+                            <div id="image-row{{$i}}" class="col-md-4 col-sm-6 col-xs-12" style="margin-top: 20px;">
+                                <div class="image view view-first">
+                                    <img width="300" height="300" id="previewImageProduct{{$i}}" src="{{url('')}}/{{$value['image']}}">
+                                    <input id="imageProduct{{$i}}" name="imageData[]" class="form-control" type="hidden" value="{{$value['image']}}">
+                                    <div class="mask no-caption">
+                                        <div class="tools tools-bottom"><a href="javascript:;" data-input="imageProduct{{$i}}" data-preview="previewImageProduct{{$i}}" class="selectImage{{$i}}" data-toggle="tooltip" data-placement="top" data-original-title="Chọn Hình Ảnh"><i class="fa fa-plus"></i></a><a href="javascript:;" onclick="$('#image-row{{$i}}').remove();"><i class="fa fa-trash"></i></a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $('.selectImage{{$i}}').filemanager('image');
+                                    var lfm = function(options, cb) {
+                                        var route_prefix = (options && options.prefix) ? options.prefix : '/uploads';
+                                        window.open(route_prefix + '?type=' + options.type || 'file', 'FileManager', 'width=1200,height=800');
+                                        window.SetUrl = cb;
+                                    };
+                                })
+                                
+                            </script>
+                            @php $i++; @endphp
+                            @endforeach
+                        </div>
+                    </div>
                     <div class="tab-pane" id="tab-attributes">
                         <a onclick="addAttribute();" class="btn btn-success pull-right">Thêm Mới Thuộc Tính</a>
                         <table class="table table-bordered">
@@ -248,6 +231,29 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="tab-pane" id="tab-seo">
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Tiêu Đề (Meta Title)
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input name="txtTitleSeo" value="{{$product->titleSeo}}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Thẻ Mô Tả ( Meta Description)
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input name="txtDescriptionSeo" value="{{$product->descriptionSeo}}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-2 col-sm-2 col-xs-12"> Từ Khóa ( Tags)
+                            </label>
+                            <div class="col-md-8 col-sm-8 col-xs-12">
+                                <input name="txtTags" value="{{$product->tags}}" type="text" class="form-control">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -80,24 +80,6 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-12">
-            <table width="100%" cellspacing="0" cellpadding="8" class="wrap-user-permission">
-                <tr>
-                    <td>
-                        <div onclick="checkbox('order_');" style="padding-left: 2px; padding-right: 2px; text-align: center; cursor: pointer; background: #BBBBBB; border: solid #3c8dbc 1px;">Menu Orders <input type="checkbox" class="user-permission" name="order_" id="order_" value="1" onmouseover="on_mouse=1;" onmouseout="on_mouse=0;"></div>
-                    </td>
-                    <td>
-                        <div style="padding-left: 2px; padding-right: 2px; text-align: center; background: #EEEEEE; border: solid #3c8dbc 1px; font-weight: bold; padding:4px;">Order</div>
-                    </td>
-                    <td>
-                        <div onclick="checkbox('order_view');" style="padding-left: 2px; padding-right: 2px; text-align: center; cursor: pointer; background: #FFF7E8; border: solid #3c8dbc 1px;">View <input type="checkbox" class="user-permission" name="order_view" id="order_view" value="1" onmouseover="on_mouse=1;" onmouseout="on_mouse=0;"></div>
-                    </td>
-                    <td>
-                        <div onclick="checkbox('order_search');" style="padding-left: 2px; padding-right: 2px; text-align: center; cursor: pointer; background: #FFF7E8; border: solid #3c8dbc 1px;">Search <input type="checkbox" class="user-permission" name="order_search" id="order_search" value="1" onmouseover="on_mouse=1;" onmouseout="on_mouse=0;"></div>
-                    </td>
-                </tr>
-            </table>
-        </div>
     </div>
 </div>
 @stop

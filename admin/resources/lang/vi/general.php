@@ -102,6 +102,7 @@
 		'seoTitle'=>'Thẻ Tiêu Đề (Meta Title)',
 		'seoDescription'=>'Thẻ Mô Tả ( Meta Description)',
 		'seoTags'=>'Từ Khóa ( Tags)',
-		'summary'=>'Mô Tả Tóm Tắt'
+		'summary'=>'Mô Tả Tóm Tắt',
+		'permission'=>'Phân Quyền Truy Cập'
 	];
 ?>

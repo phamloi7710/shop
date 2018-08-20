@@ -31,23 +31,18 @@
         <script src="assets/admin/vendors/moment/min/moment.min.js"></script>
         <script src="assets/admin/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
         <script src="assets/admin/vendors/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+
         <!-- jquery.inputmask -->
         <script src="assets/admin/vendors/jquery.inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>
-        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/validationengine/languages/jquery.validationEngine-vi.js"></script>
-        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/jquery-validation/jquery.validate.js"></script>
-        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/validationengine/jquery.validationEngine.js"></script>
-        <script type="text/javascript" charset="utf-8" src="assets/js/plugins/noty/jquery.noty.js"></script>
         <script src="assets/admin/build/js/custom.min.js"></script>
-        <script src="assets/admin/vendors/validator/validator.js"></script>
         <script type="text/javascript" src="assets/admin/filemanager/js/lfm.js"></script>
         <script src="assets/custom/format-price.vn.js" type="text/javascript" charset="utf-8" async defer></script>
         <script src="assets/custom/custom.footer.js" type="text/javascript"></script>
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 
-        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/i18n/defaults-*.min.js"></script>
         <!-- Switchery -->
         <script src="assets/admin/vendors/switchery/dist/switchery.min.js"></script>
+        
     </body>
 </html>

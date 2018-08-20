@@ -4,12 +4,12 @@
 @extends('admin.general.master')
 @section('content')
 <div class="right_col" role="main">
-	<form method="POST" action="{{route('postAddProductAdmin')}}" class="form-horizontal form-label-left">
+	<form id="addproduct" method="POST" action="{{route('postAddProductAdmin')}}" class="form-horizontal">
     @csrf
 		<div class="x_panel">
 	        <div class="x_title">
 	            <h2> {{__('general.addProduct')}}</h2>
-	            <button type="submit" class="btn btn-success pull-right">{{trans('general.addNew')}}</button>
+	            <button type="submit" class="btn btn-success pull-right">{{trans('general.save')}}</button>
 	            <div class="clearfix"></div>
 	        </div>
 	        <div class="x_content">
@@ -26,22 +26,22 @@
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{__('general.productName')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input placeholder="{{__('placeholder.productName')}}" name="txtName" type="text" class="form-control" autofocus>
+	                            <input placeholder="{{__('placeholder.productName')}}" name="txtName" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12">{{__('general.productCode')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtCode" placeholder="{{__('placeholder.productCode')}}" type="text" class="form-control">
+	                            <input value="" name="txtCode" placeholder="{{__('placeholder.productCode')}}" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="control-label col-md-2 col-sm-2 col-xs-12"> {{__('general.productCategory')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <select name="sltparentCategory" class="form-control select" data-live-search="true">
-                               		<option>---{{__('general.root')}}---</option>
+	                            <select name="sltparentCategory" class="form-control selectpicker" data-live-search="true">
+                               		<option value="0">---{{__('general.root')}}---</option>
 	                            		<?php menuMultiInCate($categories,0,$str = "&ensp;",old('sltparentCategory')) ?>
 	                           	</select>
 	                        </div>
@@ -163,7 +163,7 @@
 	                                            <label class="control-label col-md-3 col-sm-3 col-xs-3">{{__('general.displayOrder')}}
 	                                            </label>
 	                                            <div class="col-md-5 col-sm-5 col-xs-5">
-	                                                <input name="txtSort" placeholder="{{__('placeholder.displayOrder')}}" type="text" class="form-control">
+	                                                <input value="" name="txtSort" placeholder="{{__('placeholder.displayOrder')}}" type="text" class="form-control">
 	                                            </div>
 	                                        </div>
 	                                        
@@ -204,21 +204,21 @@
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoTitle')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtTitleSeo" placeholder="{{__('placeholder.seoTitle')}}" type="text" class="form-control">
+	                            <input value="" name="txtTitleSeo" placeholder="{{__('placeholder.seoTitle')}}" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoDescription')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtDescriptionSeo" placeholder="{{__('placeholder.seoDescription')}}" type="text" class="form-control">
+	                            <input value="" name="txtDescriptionSeo" placeholder="{{__('placeholder.seoDescription')}}" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="control-label col-md-3 col-sm-3 col-xs-12">{{__('general.seoTags')}}
 	                        </label>
 	                        <div class="col-md-8 col-sm-8 col-xs-12">
-	                            <input name="txtTags" placeholder="{{__('placeholder.seoTags')}}" type="text" class="form-control">
+	                            <input value="" name="txtTags" placeholder="{{__('placeholder.seoTags')}}" type="text" class="form-control">
 	                        </div>
 	                    </div>
 	                </div>
@@ -227,4 +227,52 @@
 	    </div>
 	</form>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#addproduct').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                txtName: {
+	                    validators: {
+	                            stringLength: {
+	                            min: 6,
+	                            max: 255,
+	                            message:'{{__("notify.lenghtProductName")}}'
+	                        },
+	                            notEmpty: {
+	                            message: '{{__("notify.requiredProductName")}}'
+	                        }
+	                    }
+            		},
+            		txtCode: {
+	                    validators: {
+	                            stringLength: {
+	                            min: 3,
+	                            max: 64,
+	                            message:'{{__("notify.lenghtProductCode")}}'
+	                        },
+	                            notEmpty: {
+	                            message: '{{__("notify.requiredProductCode")}}'
+	                        }
+	                    }
+            		}
+            	}
+            })
+            .on('success.form.bv', function(e) {
+                $('#success_message').slideDown({ opacity: "show" }, "slow") // Do something ...
+                    $('#addproduct').data('bootstrapValidator').resetForm();
+                e.preventDefault();
+                var $form = $(e.target);
+                var bv = $form.data('bootstrapValidator');
+                $.post($form.attr('action'), $form.serialize(), function(result) {
+                    console.log(result);
+                }, 'json');
+            });
+            
+        });
+</script>
 @stop

@@ -12,40 +12,6 @@
             <div class="clearfix"></div>
         </div>
         <div class="x_content table-responsive">
-            <!-- <table class="table table-striped">
-              <thead>
-                <tr>
-                    <th style="width: 20%;"> {{trans('general.name')}}</th>
-                    <th style="width: 10%;"> {{trans('general.emailAddress')}}</th>
-                    <th style="width: 10%;"> {{trans('general.username')}}</th>
-                    <th style="width: 15%;"> {{trans('general.userGroup')}}</th>
-                    <th style="width: 8%;"> {{trans('general.status')}}</th>
-                    <th style="width: 7%;"> {{trans('general.action')}}</th>
-                </tr>
-                
-              </thead>
-              <tbody>
-                @foreach($users as $value)
-                <tr>
-                    <td> {{$value->name}}</td>
-                    <td> {{$value->email}}</td>
-                    <td> {{$value->username}}</td>
-                    <td> {{$value->group->name}}</td>
-                    <td style="font-size: 16px;">
-                        @if($value->status=='active')
-                        <span class="label label-success"> {{__("general.isActive")}}</span>
-                        @else
-                        <span class="label label-danger"> {{__("general.locked")}}</span>
-                        @endif
-                    </td>
-                    <td class="center">
-                        <a href="{{route('getEditUser',$value->id)}}" class="btn btn-success btn-xs"><span class="fa fa-eye"></span></a>
-                        <a href="{{route('deleteUser',['id'=>$value->id])}}" class="btn btn-danger btn-xs"><span class="fa fa-trash"></span></a>
-                    </td>
-                </tr>
-                @endforeach
-              </tbody>
-            </table> -->
             <div class="x_content">
                 @foreach($users as $value)
                 <div class="col-md-4 col-sm-4 col-xs-12 profile_details">

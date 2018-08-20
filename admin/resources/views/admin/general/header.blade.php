@@ -19,7 +19,6 @@
         <link href="assets/admin/plugins/bootstrap-toastr/toastr.min.css" rel="stylesheet">
         <link href="assets/custom/custom.css" rel="stylesheet">
         <script src="assets/admin/vendors/jquery/dist/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/custom.js"></script>
         <script src="assets/admin/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="assets/custom/custom.header.js"></script>
         <script type="text/javascript" src="assets/admin/ckeditor/ckeditor.js"></script>
@@ -27,6 +26,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
         <!-- Switchery -->
         <link href="assets/admin/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+        <script src='//cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.4.5/js/bootstrapvalidator.min.js'></script>
     </head>
     <body class="nav-md">
         <div class="container body">

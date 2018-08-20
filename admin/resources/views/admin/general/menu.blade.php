@@ -4,7 +4,7 @@
                 <!-- <h3>Live On</h3> -->
                 <ul class="nav side-menu">
                     <li>
-                        <a><i class="fa fa-users"></i> {{__('general.management')}}<span class="fa fa-chevron-down"></span></a>
+                        <a><i class="fa fa-gears"></i> {{__('general.management')}}<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('getListLanguages')}}"> {{__('general.languages')}}</a></li>
                         </ul>
@@ -17,7 +17,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a><i class="fa fa-users"></i> {{__('general.products')}}<span class="fa fa-chevron-down"></span></a>
+                        <a><i class="fa fa-barcode"></i> {{__('general.products')}}<span class="fa fa-chevron-down"></span></a>
                         <ul class="nav child_menu">
                             <li><a href="{{route('getListProductsAdmin')}}"> {{__('general.products')}}</a></li>
                             <li><a href="{{route('getListCategoriesAdmin')}}"> {{__('general.categories')}}</a></li>
@@ -25,7 +25,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="{{route('getListPermisssions')}}"><i class="fa fa-users"></i> {{__('general.roles')}}</a>
+                        <a href="{{route('getListPermisssions')}}"><i class="fa fa-lock"></i> {{__('general.roles')}}</a>
                     </li>
                 </ul>
             </div>

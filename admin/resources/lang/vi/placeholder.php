@@ -42,5 +42,6 @@
 		'seoTitle'=>'Thẻ Tiêu Đề (Meta Title)',
 		'seoDescription'=>'Thẻ Mô Tả ( Meta Description)',
 		'seoTags'=>'Từ Khóa ( Tags)',
+		'sort'=>'Vị Trí Sắp Xếp'
 	];
 ?>
