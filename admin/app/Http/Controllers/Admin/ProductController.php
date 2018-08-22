@@ -7,20 +7,48 @@ use App\Http\Controllers\Controller;
 use App\Model\Products\Category;
 use App\Model\Products\Product;
 use App;
-use App\Http\Requests\Category\AddCategoryRequest;
-use App\Http\Requests\Category\EditCategoryRequest;
-use App\Http\Requests\Product\AddProductRequest;
-use App\Http\Requests\Product\EditProductRequest;
+use App\Exports\ProductExport;
+use Excel;
 class ProductController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:product-get-list', ['only' => ['getListProducts']]);
-         $this->middleware('permission:product-get-add', ['only' => ['getAddProduct']]);
-         $this->middleware('permission:product-post-add', ['only' => ['postAddProduct']]);
-         $this->middleware('permission:product-get-edit', ['only' => ['getEditProduct']]);
-         $this->middleware('permission:product-post-edit', ['only' => ['postEditProduct']]);
-         $this->middleware('permission:product-get-delete', ['only' => ['deleteProduct']]);
+         // $this->middleware('permission:product-get-list', ['only' => ['getListProducts']]);
+         // $this->middleware('permission:product-get-add', ['only' => ['getAddProduct']]);
+         // $this->middleware('permission:product-post-add', ['only' => ['postAddProduct']]);
+         // $this->middleware('permission:product-get-edit', ['only' => ['getEditProduct']]);
+         // $this->middleware('permission:product-post-edit', ['only' => ['postEditProduct']]);
+         // $this->middleware('permission:product-get-delete', ['only' => ['deleteProduct']]);
+    }
+     public function exportProduct($type) 
+    {
+        $products = Product::select('name','code','priceWareHouse','priceSell','priceSale','qty','summary','note')->get();
+        return Excel::create('products', function($excel) use ($products) {
+            $excel->sheet('Tất Cả Sản Phẩm', function($sheet) use ($products)
+            {
+                $result = $this->getProductsToExcel($products);
+                $sheet->fromArray($result);
+            });
+        })->download($type);
+    }
+    private function getProductsToExcel($products)
+    {
+        $result = [];
+     
+        foreach ($products as $key => $value) {
+            $result[] = [
+                'STT' => $key + 1,
+                'Tên Sản Phẩm' => isset($value->name) ? $value->name : 'Đang Cập Nhật',
+                'Mã SP' => isset($value->code) ? $value->code : 'Đang Cập Nhật',
+                'Giá Nhập' => isset($value->priceWareHouse) ?  number_format($value->priceWareHouse) : 'Đang Cập Nhật',
+                'Giá Bán' => isset($value->priceSell) ? number_format($value->priceSell) : 'Đang Cập Nhật',
+                'Giá Khuyến Mãi' => isset($value->priceSale) ? number_format($value->priceSale) : 'Đang Cập Nhật',
+                'Số Lượng' => isset($value->qty) ? $value->qty : '',
+                'Ngày Tạo' => isset($value->created_at) ? date('d/m/Y',$value->created_at) : 'Đang Cập Nhật',
+                'Tổng' => (isset($value->qty) && isset($value->priceWareHouse)) ? number_format($value->qty * $value->priceWareHouse) : 0
+            ];
+        }
+        return $result;
     }
     public function getListProducts()
     {

@@ -8,6 +8,7 @@
         <div class="x_title">
             <h2> {{__('general.products')}}</h2>
             <a href="{{route('getAddProductAdmin')}}" class="btn btn-primary pull-right"> {{__('general.addNew')}}</a>
+            <a href="{{route('exportExcelProduct',['type'=>'xlsx'])}}" class="btn btn-default pull-right"> {{__('general.exportProduct')}}</a>
             <div class="clearfix"></div>
         </div>
         <div class="x_content">

@@ -1,4 +1,7 @@
 <?php
+Route::get('importExport', 'MaatwebsiteDemoController@importExport');
+Route::get('downloadExcel/{type}', 'MaatwebsiteDemoController@downloadExcel');
+Route::post('importExcel', 'MaatwebsiteDemoController@importExcel');
 Route::post('language',array(
     'Middleware' => 'LanguageSwitcher',
     'uses' => 'LanguageController@index',
@@ -43,6 +46,7 @@ Route::group(['middleware' => 'checkRoleAdmin'], function(){
 			Route::get('edit-product/{id}', 'Admin\ProductController@getEditProduct')->name('getEditProductAdmin');
 			Route::post('edit-product/{id}', 'Admin\ProductController@postEditProduct')->name('postEditProductAdmin');
 			Route::get('delete-product/{id}', 'Admin\ProductController@deleteProduct')->name('deleteProductAdmin');
+			Route::get('exportExcelProduct/{type}', 'Admin\ProductController@exportProduct')->name('exportExcelProduct');
 		});
 		Route::group(['prefix'=>'producers'], function(){
 			Route::get('', 'Admin\LanguageController@getListProducers')->name('getListProducersAdmin');

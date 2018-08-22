@@ -23,7 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('code')->unique()->nullable();
             $table->string('langCode')->nullable();
             $table->integer('priceWareHouse')->nullable();
-            $table->integer('priceBuy')->nullable();
+            $table->integer('priceSell')->nullable();
             $table->integer('priceSale')->nullable();
             $table->integer('qty')->nullable();
             $table->text('summary')->nullable();
@@ -38,6 +38,7 @@ class CreateProductsTable extends Migration
             $table->string('descriptionSeo', 255)->nullable();
             $table->string('tags', 255)->nullable();
             $table->integer('attribute_id')->nullable();
+            $table->integer('attributeData')->nullable();
             
             $table->timestamps();
         });

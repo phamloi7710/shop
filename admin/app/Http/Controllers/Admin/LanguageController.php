@@ -9,10 +9,10 @@ class LanguageController extends Controller
 {
     function __construct()
     {
-         $this->middleware('permission:language-get-list', ['only' => ['getList']]);
-         $this->middleware('permission:language-post-add', ['only' => ['postAdd']]);
-         $this->middleware('permission:language-post-edit', ['only' => ['postEdit']]);
-         $this->middleware('permission:language-delete', ['only' => ['delete']]);
+         // $this->middleware('permission:language-get-list', ['only' => ['getList']]);
+         // $this->middleware('permission:language-post-add', ['only' => ['postAdd']]);
+         // $this->middleware('permission:language-post-edit', ['only' => ['postEdit']]);
+         // $this->middleware('permission:language-delete', ['only' => ['delete']]);
     }
     public function getList()
     {

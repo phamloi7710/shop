@@ -42,6 +42,7 @@ return [
         // permission by pham loi
         Spatie\Permission\PermissionServiceProvider::class,
         'Collective\Html\HtmlServiceProvider',
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
     'aliases' => [
@@ -79,8 +80,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Input' => Illuminate\Support\Facades\Input::class,
         'Form' => 'Collective\Html\FormFacade',
         'Html' => 'Collective\Html\HtmlFacade',
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 
